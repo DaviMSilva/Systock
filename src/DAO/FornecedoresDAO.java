@@ -15,15 +15,17 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import object.Fornecedor;
+import systock.factory;
 
 /**
  *
  * @author ACER
  */
-public class ProdutosDAO {
+public class FornecedoresDAO {
     
-    public void save (Produto produto) throws SQLException, ClassNotFoundException{
-        String sql ="INSERT INTO produtos(nomeProd, descProd,qntProd, valUnitProd,codFor,valTotalProd, validade) VALUES(?,?,?,?,?,?,?)";
+    public void save (Fornecedor fornecedor) throws SQLException, ClassNotFoundException{
+        String sql ="INSERT INTO fornecedores(nomeForne, cnpj, fone) VALUES(?,?,?)";
         Connection con = null;
         PreparedStatement pstm = null;
         
@@ -33,15 +35,13 @@ public class ProdutosDAO {
             
             pstm = con.prepareStatement(sql);
             //passa valores
-            pstm.setString(1, produto.getNome());
-            pstm.setString(2, produto.getDesc());
-            pstm.setInt(3, produto.getQnt());
-            pstm.setDouble(4, produto.getValUni());
-            pstm.setInt(5, produto.getCodFor());
-            pstm.setDouble(6, produto.getValTotal());
-            pstm.setDate(7, (Date) produto.getValidade());
+            pstm.setString(1, fornecedor.getNomeForne());
+            pstm.setString(2, fornecedor.getCnpj());
+            pstm.setString(3, fornecedor.getFone());
+           
             //execute
             pstm.execute();
+            JOptionPane.showMessageDialog(null, "Fornecedor Salvo");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }finally{
@@ -154,3 +154,9 @@ public class ProdutosDAO {
     }
 
 }
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+

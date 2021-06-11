@@ -5,6 +5,10 @@
  */
 package frames;
 
+import DAO.FornecedoresDAO;
+import javax.swing.JOptionPane;
+import object.Fornecedor;
+
 /**
  *
  * @author ACER
@@ -35,12 +39,12 @@ public class cadfor extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jFormattedTextField6 = new javax.swing.JFormattedTextField();
+        TextCnpjforne = new javax.swing.JFormattedTextField();
         jLabel9 = new javax.swing.JLabel();
-        jFormattedTextField7 = new javax.swing.JFormattedTextField();
-        jTextField3 = new javax.swing.JTextField();
+        textFoneForne = new javax.swing.JFormattedTextField();
+        textNomeForne = new javax.swing.JTextField();
         jPanel18 = new javax.swing.JPanel();
-        jButton49 = new javax.swing.JButton();
+        btnCadForneSalvar = new javax.swing.JButton();
         jButton50 = new javax.swing.JButton();
         jButton51 = new javax.swing.JButton();
 
@@ -73,13 +77,13 @@ public class cadfor extends javax.swing.JFrame {
         jLabel4.setText("Email: (opcional)");
 
         try {
-            jFormattedTextField6.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
+            TextCnpjforne.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextField6.addActionListener(new java.awt.event.ActionListener() {
+        TextCnpjforne.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField6ActionPerformed(evt);
+                TextCnpjforneActionPerformed(evt);
             }
         });
 
@@ -87,19 +91,19 @@ public class cadfor extends javax.swing.JFrame {
         jLabel9.setText("Setor: (opcional)");
 
         try {
-            jFormattedTextField7.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #####-####")));
+            textFoneForne.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextField7.addActionListener(new java.awt.event.ActionListener() {
+        textFoneForne.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField7ActionPerformed(evt);
+                textFoneForneActionPerformed(evt);
             }
         });
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        textNomeForne.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                textNomeForneActionPerformed(evt);
             }
         });
 
@@ -111,7 +115,7 @@ public class cadfor extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jFormattedTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(textFoneForne, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(118, 118, 118)
                         .addComponent(jTextField2))
                     .addComponent(jLabel4)
@@ -123,10 +127,10 @@ public class cadfor extends javax.swing.JFrame {
                                     .addComponent(jLabel3))
                                 .addGap(193, 193, 193))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(textNomeForne, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jFormattedTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
+                            .addComponent(TextCnpjforne, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
                             .addComponent(jLabel9)
                             .addComponent(jLabel2)))
                     .addComponent(jTextField1))
@@ -144,8 +148,8 @@ public class cadfor extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jFormattedTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TextCnpjforne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textNomeForne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -153,7 +157,7 @@ public class cadfor extends javax.swing.JFrame {
                 .addGap(8, 8, 8)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textFoneForne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(9, 9, 9)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -163,7 +167,12 @@ public class cadfor extends javax.swing.JFrame {
 
         jPanel18.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jButton49.setText("SALVAR");
+        btnCadForneSalvar.setText("SALVAR");
+        btnCadForneSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadForneSalvarActionPerformed(evt);
+            }
+        });
 
         jButton50.setText("ALTERAR");
         jButton50.addActionListener(new java.awt.event.ActionListener() {
@@ -180,7 +189,7 @@ public class cadfor extends javax.swing.JFrame {
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel18Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addComponent(jButton49, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCadForneSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14)
                 .addComponent(jButton50, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -193,7 +202,7 @@ public class cadfor extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jButton50, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton49, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCadForneSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton51, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18))
         );
@@ -221,7 +230,6 @@ public class cadfor extends javax.swing.JFrame {
                 .addGap(28, 28, 28))
         );
 
-        jPanel1.getAccessibleContext().setAccessibleName("Cadastro de Fornecedor");
         jPanel1.getAccessibleContext().setAccessibleDescription("");
 
         pack();
@@ -239,17 +247,41 @@ public class cadfor extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton50ActionPerformed
 
-    private void jFormattedTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField6ActionPerformed
+    private void TextCnpjforneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextCnpjforneActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField6ActionPerformed
+    }//GEN-LAST:event_TextCnpjforneActionPerformed
 
-    private void jFormattedTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField7ActionPerformed
+    private void textFoneForneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFoneForneActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField7ActionPerformed
+    }//GEN-LAST:event_textFoneForneActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void textNomeForneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNomeForneActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_textNomeForneActionPerformed
+
+    private void btnCadForneSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadForneSalvarActionPerformed
+            // TODO add your handling code here:
+        if(textNomeForne.getText().equals("")||TextCnpjforne.equals("")){
+            JOptionPane.showMessageDialog(null, "Campos obrigatorios em Branco");
+           
+        }
+        else{
+            try {
+                Fornecedor forne = new Fornecedor();
+                forne.setNomeForne(textNomeForne.getText());
+                forne.setCnpj(String.valueOf(TextCnpjforne.getText()));
+                forne.setFone(String.valueOf(textFoneForne.getText()));
+                
+                FornecedoresDAO dao =new FornecedoresDAO();
+                dao.save(forne);
+                
+                
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "existem campos preenchidos incorretamente" + e);
+            }
+        }
+        
+    }//GEN-LAST:event_btnCadForneSalvarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -288,11 +320,10 @@ public class cadfor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton49;
+    private javax.swing.JFormattedTextField TextCnpjforne;
+    private javax.swing.JButton btnCadForneSalvar;
     private javax.swing.JButton jButton50;
     private javax.swing.JButton jButton51;
-    private javax.swing.JFormattedTextField jFormattedTextField6;
-    private javax.swing.JFormattedTextField jFormattedTextField7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -302,6 +333,7 @@ public class cadfor extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel18;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JFormattedTextField textFoneForne;
+    private javax.swing.JTextField textNomeForne;
     // End of variables declaration//GEN-END:variables
 }

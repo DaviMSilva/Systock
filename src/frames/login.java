@@ -5,15 +5,16 @@
  */
 package frames;
 
+import DAO.UsuariosDAO;
 import javax.swing.JOptionPane;
+import object.Usuario;
 
 /**
  *
  * @author ACER
  */
 public class login extends javax.swing.JFrame {
-    static String user="GERENTE";
-    static String password= "1234";
+    
     /**
      * Creates new form login
      */
@@ -154,12 +155,27 @@ public class login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLoginActionPerformed
-        String temp = new String(PasswordFieldLogin.getPassword());
-        if(TextUser.getText().equals(user) && temp.equals(password)){
-            new menu().setVisible(true);
-            this.dispose();
-        }else{
-            JOptionPane.showMessageDialog(null, "Usuário e/ou Senha incorretos");
+        
+        
+        if(TextUser.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Existem campos obrigatorios em branco");
+        }
+        else{
+            try {
+                Usuario user = new Usuario();
+                user.setUserLogin(TextUser.getText());
+                
+                user.setUserPassword(String.valueOf(PasswordFieldLogin.getPassword()));
+                UsuariosDAO DAO = new UsuariosDAO();
+                if(DAO.auth(user) == true){
+                    new menu().setVisible(true);
+                    this.dispose();
+                }
+                
+                
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Usuario e/ou Senha incorreto(s)");
+            }
         }
 
 // TODO add your handling code here:
