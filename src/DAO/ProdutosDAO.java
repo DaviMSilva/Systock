@@ -23,7 +23,7 @@ import javax.swing.JOptionPane;
 public class ProdutosDAO {
     
     public void save (Produto produto) throws SQLException, ClassNotFoundException{
-        String sql ="INSERT INTO produtos(nomeProd, descProd,qntProd, valUnitProd,codFor,valTotalProd, validade) VALUES(?,?,?,?,?,?,?)";
+        String sql ="INSERT INTO produtos(nomeProd, descProd,qntProd, valUnitProd,idForne,valTotalProd, validade) VALUES(?,?,?,?,?,?,?)";
         Connection con = null;
         PreparedStatement pstm = null;
         
@@ -41,19 +41,16 @@ public class ProdutosDAO {
             pstm.setDouble(6, produto.getValTotal());
             pstm.setDate(7, (Date) produto.getValidade());
             //execute
-            pstm.execute();
+            pstm.executeUpdate();
+            JOptionPane.showMessageDialog(null, "salvo com sucesso!");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }finally{
             try {
                 
                 //fechar conexoes
-                if(pstm!=null){
-                    pstm.close();
-                }
-                if(con!= null){
-                    con.close();
-                }
+                factory.closeConection(con, pstm);
+                
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null,"erro ao fechar conexoes "+ e);
             }

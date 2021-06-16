@@ -167,10 +167,9 @@ public class login extends javax.swing.JFrame {
                 
                 user.setUserPassword(String.valueOf(PasswordFieldLogin.getPassword()));
                 UsuariosDAO DAO = new UsuariosDAO();
-                if(DAO.auth(user) == true){
-                    new menu().setVisible(true);
+                
+                new menu().setVisible(true);
                     this.dispose();
-                }
                 
                 
             } catch (Exception e) {

@@ -60,38 +60,42 @@ public class FornecedoresDAO {
         }
     }
     
-    public void deleteForCod(Produto produto){
-        String sql ="DELETE FROM produtos WHERE idProd = ?";
+    public List<Fornecedor> procuraCod(Fornecedor f){
+        String sql ="SELECT * FROM fornecedores WHERE idForne = ?";
+        List <Fornecedor> forne = new ArrayList<Fornecedor>();
         
         Connection con = null;
         PreparedStatement pstm = null;
+        ResultSet rs = null;
         
         try {
             // criar conexao
             con = (Connection) factory.createConnection();
             
             pstm = con.prepareStatement(sql);
+            
+            pstm.setInt(1, f.getIdForne());
+            
+            rs = pstm.executeQuery();
             //passa valores
-            pstm.setInt(1, produto.getCod());
-            //execute
-            pstm.execute();
-        } catch (Exception e) {
+            while(rs.next()){
+                Fornecedor freturn = new Fornecedor();
+                freturn.setNomeForne(rs.getString("nomeForne"));
+                forne.add(freturn);
+            }     
+            
+        }catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }finally{
             try {
                 
                 //fechar conexoes
-                if(pstm!=null){
-                    pstm.close();
-                }
-                if(con!= null){
-                    con.close();
-                }
+                factory.closeConection(con, pstm);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null,"erro ao fechar conexoes "+ e);
             }
         }
-        
+      return forne;       
     }
 
 
