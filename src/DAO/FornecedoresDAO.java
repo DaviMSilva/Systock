@@ -5,7 +5,7 @@
  */
 package DAO;
 
-import object.Produto;
+import object.Fornecedor;
 import systock.factory;
 import java.sql.Connection;
 import java.sql.Date;
@@ -82,7 +82,13 @@ public class FornecedoresDAO {
             //passa valores
             while(rs.next()){
                 Fornecedor freturn = new Fornecedor();
+                freturn.setIdForne(rs.getInt("idForne"));
                 freturn.setNomeForne(rs.getString("nomeForne"));
+                freturn.setCnpj(rs.getString("cnpj"));
+                freturn.setEmail(rs.getString("email"));
+                freturn.setFone(rs.getString("fone"));
+                freturn.setSetor(rs.getString("setor"));
+                
                 forne.add(freturn);
             }     
             
@@ -101,9 +107,9 @@ public class FornecedoresDAO {
     }
 
 
-    public List<Produto> getProdutos() throws SQLException{
-        String sql ="SELECT * FROM produtos";
-        List<Produto> produtos = new ArrayList<Produto>();
+    public List<Fornecedor> getFornecedores() throws SQLException{
+        String sql ="SELECT * FROM fornecedores";
+        List<Fornecedor> fornecedores = new ArrayList<Fornecedor>();
         
         
         Connection con = null;
@@ -118,25 +124,24 @@ public class FornecedoresDAO {
             rset = pstm.executeQuery();
             
             while(rset.next()){
-                Produto produto = new Produto();
+                Fornecedor Forne = new Fornecedor();
                 //recuperar dados
-                produto.setCod(rset.getInt("idProd"));
+                Forne.setIdForne(rset.getInt("idForne"));
                 // recuperar nome
-                produto.setNome(rset.getString("nomeProd"));
+                Forne.setNomeForne(rset.getString("nomeForne"));
                 // recuperar descriçao
-                produto.setDesc(rset.getString("descProd"));
+                Forne.setCnpj(rset.getString("cnpj"));
                 // recuperar qnt de itens
-                produto.setQnt(rset.getInt("qntProd"));
+                Forne.setEmail(rset.getString("email"));
                 //recuperar valor id fornecedor
-                produto.setCodFor(rset.getInt("idForne"));
+                Forne.setFone(rset.getString("fone"));
                 // recupera valor uni 
-                produto.setValUni(rset.getDouble("valUnitProd"));
+                Forne.setSetor(rset.getString("setor"));
                 // recupera valor total 
-                produto.setValTotal(rset.getDouble("valTotalProd"));
-                // recupera validade 
-                produto.setValidade(rset.getDate("validade"));
                 
-                produtos.add(produto);
+                
+                fornecedores.add(Forne);
+                
             }
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, " erro ao recuperar dados do banco " +e);
@@ -148,7 +153,7 @@ public class FornecedoresDAO {
             
         }
         //retornar a lista
-        return produtos;
+        return fornecedores;
     
     }
 

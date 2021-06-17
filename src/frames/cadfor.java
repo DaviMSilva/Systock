@@ -7,6 +7,7 @@ package frames;
 
 import DAO.FornecedoresDAO;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import object.Fornecedor;
 import systock.factory;
 
@@ -33,6 +34,14 @@ public class cadfor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        alterar = new javax.swing.JFrame();
+        painelBusca = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        textCadForBusca = new javax.swing.JTextField();
+        btnBusca = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabelaBusca = new javax.swing.JTable();
+        btnBusca1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         textCadForneEmail = new javax.swing.JTextField();
@@ -48,6 +57,102 @@ public class cadfor extends javax.swing.JFrame {
         btnCadForneSalvar = new javax.swing.JButton();
         jButton50 = new javax.swing.JButton();
         jButton51 = new javax.swing.JButton();
+
+        alterar.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        painelBusca.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel10.setText("Digite nome ou número do Fornecedor: (em branco para todos)");
+
+        btnBusca.setText("Buscar");
+        btnBusca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscaActionPerformed(evt);
+            }
+        });
+
+        tabelaBusca.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Cod", "Nome", "Cnpj", "Setor", "Email", "Fone"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabelaBusca.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(tabelaBusca);
+
+        btnBusca1.setText("Selecionar");
+        btnBusca1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBusca1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout painelBuscaLayout = new javax.swing.GroupLayout(painelBusca);
+        painelBusca.setLayout(painelBuscaLayout);
+        painelBuscaLayout.setHorizontalGroup(
+            painelBuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelBuscaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(painelBuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE)
+                    .addGroup(painelBuscaLayout.createSequentialGroup()
+                        .addGroup(painelBuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10)
+                            .addGroup(painelBuscaLayout.createSequentialGroup()
+                                .addComponent(textCadForBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnBusca)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelBuscaLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnBusca1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(181, 181, 181))
+        );
+        painelBuscaLayout.setVerticalGroup(
+            painelBuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelBuscaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(painelBuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnBusca)
+                    .addGroup(painelBuscaLayout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(textCadForBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnBusca1)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout alterarLayout = new javax.swing.GroupLayout(alterar.getContentPane());
+        alterar.getContentPane().setLayout(alterarLayout);
+        alterarLayout.setHorizontalGroup(
+            alterarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(alterarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(painelBusca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        alterarLayout.setVerticalGroup(
+            alterarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(alterarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(painelBusca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -251,6 +356,9 @@ public class cadfor extends javax.swing.JFrame {
 
     private void jButton50ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton50ActionPerformed
         // TODO add your handling code here:
+        this.alterar.setVisible(true);
+        this.alterar.setLocationRelativeTo(this);
+        this.alterar.setSize(573, 320);
     }//GEN-LAST:event_jButton50ActionPerformed
 
     private void TextCnpjforneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextCnpjforneActionPerformed
@@ -298,6 +406,51 @@ public class cadfor extends javax.swing.JFrame {
         limpar();
     }//GEN-LAST:event_jButton51ActionPerformed
 
+    private void btnBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaActionPerformed
+        // TODO add your handling code here:
+        if(textCadForBusca.getText().equals("")){
+            FornecedoresDAO DAO = new FornecedoresDAO();
+            DefaultTableModel model = (DefaultTableModel) tabelaBusca.getModel();
+            model.setNumRows(0);
+            try {
+                for (Fornecedor p : DAO.getFornecedores()){
+                    // adiciona a tabela
+                    model.addRow(new Object[]{p.getIdForne(),p.getNomeForne(),p.getCnpj(),p.getSetor(),p.getEmail(),p.getFone()});
+                }
+            } catch (Exception e) {
+
+            }
+        }else{
+
+        }
+
+        jScrollPane1.setViewportView(this.tabelaBusca);
+    }//GEN-LAST:event_btnBuscaActionPerformed
+
+    private void btnBusca1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusca1ActionPerformed
+        // TODO add your handling code here:
+        try {
+            Fornecedor forne = new Fornecedor();
+            FornecedoresDAO dao = new FornecedoresDAO();
+
+            forne.setIdForne(this.tabelaBusca.getSelectedRow()+1);
+
+            for(Fornecedor p: dao.procuraCod(forne)){
+                TextCnpjforne.setText(p.getCnpj());
+                textCadForneEmail.setText(p.getEmail());
+                textCadForneSetor.setText(p.getSetor());
+                textFoneForne.setText(p.getFone());
+                textNomeForne.setText(p.getNomeForne());
+
+            }
+
+            this.alterar.dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e,"erro",0);
+        }
+
+    }//GEN-LAST:event_btnBusca1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -336,16 +489,24 @@ public class cadfor extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFormattedTextField TextCnpjforne;
+    private javax.swing.JFrame alterar;
+    private javax.swing.JButton btnBusca;
+    private javax.swing.JButton btnBusca1;
     private javax.swing.JButton btnCadForneSalvar;
     private javax.swing.JButton jButton50;
     private javax.swing.JButton jButton51;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel18;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel painelBusca;
+    private javax.swing.JTable tabelaBusca;
+    private javax.swing.JTextField textCadForBusca;
     private javax.swing.JTextField textCadForneEmail;
     private javax.swing.JTextField textCadForneSetor;
     private javax.swing.JFormattedTextField textFoneForne;
