@@ -14,6 +14,24 @@ public class Fornecedor {
     private String nomeForne;
     private String cnpj;
     private String fone;
+    private String email;
+    private String setor;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSetor() {
+        return setor;
+    }
+
+    public void setSetor(String setor) {
+        this.setor = setor;
+    }
 
     public int getIdForne() {
         return idForne;

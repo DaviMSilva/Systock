@@ -164,14 +164,17 @@ public class login extends javax.swing.JFrame {
             try {
                 Usuario user = new Usuario();
                 user.setUserLogin(TextUser.getText());
-                
                 user.setUserPassword(String.valueOf(PasswordFieldLogin.getPassword()));
-                UsuariosDAO DAO = new UsuariosDAO();
+                UsuariosDAO dao = new UsuariosDAO();
                 
-                new menu().setVisible(true);
+                if(dao.auth(user)){
+                    new menu().setVisible(true);
                     this.dispose();
-                
-                
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Dados incorretos ou Usuário inexistente!");
+                }
+                   
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Usuario e/ou Senha incorreto(s)");
             }

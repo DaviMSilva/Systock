@@ -7,9 +7,13 @@ package frames;
 
 import DAO.FornecedoresDAO;
 import DAO.ProdutosDAO;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import object.Fornecedor;
 import object.Produto;
 
@@ -36,7 +40,14 @@ public class cadProd extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPopupMenu1 = new javax.swing.JPopupMenu();
+        alterar = new javax.swing.JFrame();
+        painelBusca = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        textCadProdBusca = new javax.swing.JTextField();
+        btnBusca = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabelaBusca = new javax.swing.JTable();
+        btnBusca1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         textProdNome = new javax.swing.JTextField();
@@ -58,6 +69,102 @@ public class cadProd extends javax.swing.JFrame {
         btnProdSalvar = new javax.swing.JButton();
         btnProdAlterar = new javax.swing.JButton();
         btnProdLimpar = new javax.swing.JButton();
+
+        alterar.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        painelBusca.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel9.setText("Digite nome ou número do Produto: (em branco para todos)");
+
+        btnBusca.setText("Buscar");
+        btnBusca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscaActionPerformed(evt);
+            }
+        });
+
+        tabelaBusca.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Cod", "Nome", "Cod Forne", "Qnt", "Val Uni", "Total"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabelaBusca.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(tabelaBusca);
+
+        btnBusca1.setText("Selecionar");
+        btnBusca1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBusca1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout painelBuscaLayout = new javax.swing.GroupLayout(painelBusca);
+        painelBusca.setLayout(painelBuscaLayout);
+        painelBuscaLayout.setHorizontalGroup(
+            painelBuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelBuscaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(painelBuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE)
+                    .addGroup(painelBuscaLayout.createSequentialGroup()
+                        .addGroup(painelBuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addGroup(painelBuscaLayout.createSequentialGroup()
+                                .addComponent(textCadProdBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnBusca)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(painelBuscaLayout.createSequentialGroup()
+                .addGap(223, 223, 223)
+                .addComponent(btnBusca1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        painelBuscaLayout.setVerticalGroup(
+            painelBuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelBuscaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(painelBuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnBusca)
+                    .addGroup(painelBuscaLayout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(textCadProdBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnBusca1)
+                .addContainerGap(13, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout alterarLayout = new javax.swing.GroupLayout(alterar.getContentPane());
+        alterar.getContentPane().setLayout(alterarLayout);
+        alterarLayout.setHorizontalGroup(
+            alterarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(alterarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(painelBusca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        alterarLayout.setVerticalGroup(
+            alterarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(alterarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(painelBusca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -251,6 +358,11 @@ public class cadProd extends javax.swing.JFrame {
         });
 
         btnProdLimpar.setText("LIMPAR");
+        btnProdLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProdLimparActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -286,12 +398,14 @@ public class cadProd extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -337,6 +451,9 @@ public class cadProd extends javax.swing.JFrame {
 
     private void btnProdAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdAlterarActionPerformed
         // TODO add your handling code here:
+        this.alterar.setVisible(true);
+        this.alterar.setLocationRelativeTo(this);
+        this.alterar.setSize(610, 334);
     }//GEN-LAST:event_btnProdAlterarActionPerformed
 
     private void textQntKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textQntKeyReleased
@@ -406,6 +523,60 @@ public class cadProd extends javax.swing.JFrame {
 
     }//GEN-LAST:event_textValUniKeyReleased
 
+    private void btnProdLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdLimparActionPerformed
+        // TODO add your handling code here:
+        limpar();
+    }//GEN-LAST:event_btnProdLimparActionPerformed
+
+    private void btnBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaActionPerformed
+        // TODO add your handling code here:
+        if(textCadProdBusca.getText().equals("")){
+            ProdutosDAO DAO = new ProdutosDAO();
+            DefaultTableModel model = (DefaultTableModel) tabelaBusca.getModel();
+            model.setNumRows(0);
+            try {
+                for (Produto p : DAO.getProdutos()){
+                    // adiciona a tabela
+                    model.addRow(new Object[]{p.getCod(),p.getNome(),p.getCodFor(),p.getQnt(),p.getValUni(),p.getValTotal()});
+                }
+            } catch (SQLException ex) {
+                
+            }
+        }else{
+            
+        }
+        
+jScrollPane1.setViewportView(tabelaBusca);
+    }//GEN-LAST:event_btnBuscaActionPerformed
+
+    private void btnBusca1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusca1ActionPerformed
+        // TODO add your handling code here:
+        try {
+            Produto prod = new Produto();
+            ProdutosDAO dao = new ProdutosDAO();
+            
+            prod.setCod(this.tabelaBusca.getSelectedRow()+1);
+            
+            for(Produto p: dao.procuraCod(prod)){
+                textProdDesc.setText(p.getDesc());
+                textProdNome.setText(p.getNome());
+                //textProdNomeForne.setText();
+                textProdNumForne.setText(String.valueOf(p.getCodFor()));
+                //textProdValidade.setText(p.getValidade());
+                textQnt.setText(String.valueOf(p.getQnt()));
+                textTotal.setText(String.valueOf(p.getValTotal()));
+                textValUni.setText(String.valueOf(p.getValUni()));
+                
+                
+            }
+        
+            this.alterar.dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e,"erro",0);
+        }
+        
+    }//GEN-LAST:event_btnBusca1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -442,6 +613,9 @@ public class cadProd extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JFrame alterar;
+    private javax.swing.JButton btnBusca;
+    private javax.swing.JButton btnBusca1;
     private javax.swing.JButton btnProdAlterar;
     private javax.swing.JButton btnProdLimpar;
     private javax.swing.JButton btnProdSalvar;
@@ -453,9 +627,13 @@ public class cadProd extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel painelBusca;
+    private javax.swing.JTable tabelaBusca;
+    private javax.swing.JTextField textCadProdBusca;
     private javax.swing.JTextField textProdDesc;
     private javax.swing.JTextField textProdNome;
     private javax.swing.JTextField textProdNomeForne;
@@ -465,4 +643,16 @@ public class cadProd extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField textTotal;
     private javax.swing.JTextField textValUni;
     // End of variables declaration//GEN-END:variables
+    public void limpar(){
+        textProdDesc.setText("");
+        textProdNome.setText("");
+        textProdNomeForne.setText("");
+        textProdNumForne.setText("");
+        textProdValidade.setText("");
+        textQnt.setText("");
+        textTotal.setText("");
+        textValUni.setText("");
+        
+    }
+
 }

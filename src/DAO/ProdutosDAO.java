@@ -133,21 +133,57 @@ public class ProdutosDAO {
             JOptionPane.showMessageDialog(null, " erro ao recuperar dados do banco " +e);
         
         }finally{
-            if(rset!=null){
-                rset.close();
-            }
-            if(pstm!= null){
-                pstm.close();
-            }              
-            if(con != null){
-                con.close();
-            }
+            factory.closeConection(con, pstm, rset);
                 
             
         }
         //retornar a lista
         return produtos;
     
+    }
+    
+    public List<Produto> procuraCod(Produto p){
+        String sql ="SELECT * FROM produtos WHERE idProd = ?";
+        List <Produto> prod = new ArrayList<Produto>();
+        
+        Connection con = null;
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+        
+        try {
+            // criar conexao
+            con = (Connection) factory.createConnection();
+            
+            pstm = con.prepareStatement(sql);
+            
+            pstm.setInt(1, p.getCod());
+            
+            rs = pstm.executeQuery();
+            //passa valores
+            while(rs.next()){
+                Produto preturn = new Produto();
+                preturn.setNome(rs.getString("nomeProd"));
+                preturn.setCod(rs.getInt("idProd"));
+                preturn.setDesc(rs.getString("descProd"));
+                preturn.setQnt(rs.getInt("qntProd"));
+                preturn.setValUni(rs.getDouble("valUnitProd"));
+                preturn.setValTotal(rs.getDouble("valTotalProd"));
+                preturn.setCodFor(rs.getInt("idForne"));
+                prod.add(preturn);
+            }     
+            
+        }catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }finally{
+            try {
+                
+                //fechar conexoes
+                factory.closeConection(con, pstm);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null,"erro ao fechar conexoes "+ e);
+            }
+        }
+      return prod;       
     }
 
 }

@@ -25,7 +25,7 @@ import systock.factory;
 public class FornecedoresDAO {
     
     public void save (Fornecedor fornecedor) throws SQLException, ClassNotFoundException{
-        String sql ="INSERT INTO fornecedores(nomeForne, cnpj, fone) VALUES(?,?,?)";
+        String sql ="INSERT INTO fornecedores(nomeForne, cnpj, fone, setor, email) VALUES(?,?,?,?,?)";
         Connection con = null;
         PreparedStatement pstm = null;
         
@@ -38,6 +38,8 @@ public class FornecedoresDAO {
             pstm.setString(1, fornecedor.getNomeForne());
             pstm.setString(2, fornecedor.getCnpj());
             pstm.setString(3, fornecedor.getFone());
+            pstm.setString(4, fornecedor.getSetor());
+            pstm.setString(5, fornecedor.getEmail());
            
             //execute
             pstm.execute();
@@ -140,16 +142,9 @@ public class FornecedoresDAO {
             JOptionPane.showMessageDialog(null, " erro ao recuperar dados do banco " +e);
         
         }finally{
-            if(rset!=null){
-                rset.close();
-            }
-            if(pstm!= null){
-                pstm.close();
-            }              
-            if(con != null){
-                con.close();
-            }
-                
+           
+            //fechar conexão 
+            factory.closeConection(con, pstm, rset);
             
         }
         //retornar a lista

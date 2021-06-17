@@ -8,6 +8,7 @@ package frames;
 import DAO.FornecedoresDAO;
 import javax.swing.JOptionPane;
 import object.Fornecedor;
+import systock.factory;
 
 /**
  *
@@ -34,10 +35,10 @@ public class cadfor extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        textCadForneEmail = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        textCadForneSetor = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         TextCnpjforne = new javax.swing.JFormattedTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -55,9 +56,9 @@ public class cadfor extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Nome:");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        textCadForneEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                textCadForneEmailActionPerformed(evt);
             }
         });
 
@@ -67,9 +68,9 @@ public class cadfor extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Telefone:");
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        textCadForneSetor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                textCadForneSetorActionPerformed(evt);
             }
         });
 
@@ -117,7 +118,7 @@ public class cadfor extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(textFoneForne, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(118, 118, 118)
-                        .addComponent(jTextField2))
+                        .addComponent(textCadForneSetor))
                     .addComponent(jLabel4)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,7 +134,7 @@ public class cadfor extends javax.swing.JFrame {
                             .addComponent(TextCnpjforne, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
                             .addComponent(jLabel9)
                             .addComponent(jLabel2)))
-                    .addComponent(jTextField1))
+                    .addComponent(textCadForneEmail))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -156,12 +157,12 @@ public class cadfor extends javax.swing.JFrame {
                     .addComponent(jLabel9))
                 .addGap(8, 8, 8)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textCadForneSetor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textFoneForne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(9, 9, 9)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(textCadForneEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -182,6 +183,11 @@ public class cadfor extends javax.swing.JFrame {
         });
 
         jButton51.setText("LIMPAR");
+        jButton51.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton51ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
         jPanel18.setLayout(jPanel18Layout);
@@ -235,13 +241,13 @@ public class cadfor extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void textCadForneEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCadForneEmailActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_textCadForneEmailActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void textCadForneSetorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCadForneSetorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_textCadForneSetorActionPerformed
 
     private void jButton50ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton50ActionPerformed
         // TODO add your handling code here:
@@ -271,17 +277,26 @@ public class cadfor extends javax.swing.JFrame {
                 forne.setNomeForne(textNomeForne.getText());
                 forne.setCnpj(String.valueOf(TextCnpjforne.getText()));
                 forne.setFone(String.valueOf(textFoneForne.getText()));
+                forne.setEmail(textCadForneEmail.getText());
+                forne.setSetor(textCadForneSetor.getText());
                 
                 FornecedoresDAO dao =new FornecedoresDAO();
                 dao.save(forne);
                 
                 
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "existem campos preenchidos incorretamente" + e);
+                JOptionPane.showMessageDialog(null, "existem campos preenchidos incorretamente");
             }
+            
+            
         }
         
     }//GEN-LAST:event_btnCadForneSalvarActionPerformed
+
+    private void jButton51ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton51ActionPerformed
+        // TODO add your handling code here:
+        limpar();
+    }//GEN-LAST:event_jButton51ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -331,9 +346,16 @@ public class cadfor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel18;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField textCadForneEmail;
+    private javax.swing.JTextField textCadForneSetor;
     private javax.swing.JFormattedTextField textFoneForne;
     private javax.swing.JTextField textNomeForne;
     // End of variables declaration//GEN-END:variables
+    public void limpar(){
+        TextCnpjforne.setText("");
+        textCadForneEmail.setText("");
+        textCadForneSetor.setText("");
+        textFoneForne.setText("");
+        textNomeForne.setText("");
+    }
 }

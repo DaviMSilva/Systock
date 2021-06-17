@@ -181,6 +181,7 @@ public class menu extends javax.swing.JFrame {
 
     private void BtnMenuCadUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMenuCadUserActionPerformed
         // TODO add your handling code here:
+        new cadUser().setVisible(true);
     }//GEN-LAST:event_BtnMenuCadUserActionPerformed
 
     private void BtnMenuRelatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMenuRelatActionPerformed
