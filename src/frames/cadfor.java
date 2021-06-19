@@ -516,7 +516,10 @@ public class cadfor extends javax.swing.JFrame {
             Fornecedor forne = new Fornecedor();
             FornecedoresDAO dao = new FornecedoresDAO();
 
-            forne.setIdForne(this.tabelaBusca.getSelectedRow()+1);
+            Object obj = this.tabelaBusca.getValueAt(tabelaBusca.getSelectedRow(), 0);
+            String id = obj.toString();
+            
+            forne.setCod(Integer.parseInt(id));
 
             for(Fornecedor p: dao.procuraCod(forne)){
                 TextCnpjforne.setText(p.getCnpj());

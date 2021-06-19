@@ -638,7 +638,10 @@ jScrollPane1.setViewportView(tabelaBusca);
             Produto prod = new Produto();
             ProdutosDAO dao = new ProdutosDAO();
             
-            prod.setCod(this.tabelaBusca.getSelectedRow()+1);
+            Object obj = this.tabelaBusca.getValueAt(tabelaBusca.getSelectedRow(), 0);
+            String id = obj.toString();
+            
+            prod.setCod(Integer.parseInt(id));
             
             for(Produto p: dao.procuraCod(prod)){
                 textProdDesc.setText(p.getDesc());

@@ -448,15 +448,18 @@ public class cadUser extends javax.swing.JFrame {
         try {
             Usuario user = new Usuario();
             UsuariosDAO dao = new UsuariosDAO();
-
-            user.setIdUser(this.tabelaBusca.getSelectedRow()+1);
+            Object obj = this.tabelaBusca.getValueAt(tabelaBusca.getSelectedRow(), 0);
+            String id = obj.toString();
+            
+            user.setIdUser(Integer.parseInt(id));
 
             for(Usuario u: dao.procuraCod(user)){
-                textCod.setText(String.valueOf(u.getIdUser()));
+                textCod.setText(String.valueOf(user.getIdUser()));
                 textCadUserLogin.setText(u.getUserLogin());
                 textCadUserNome.setText(u.getUserName());
                 textCadUserPassword.setText(u.getUserPassword());
                 textCadUserPasswordConfirm.setText(u.getUserPassword());
+                
 
             }
             this.btnUserLimparExcluir.setText("EXCLUIR");
