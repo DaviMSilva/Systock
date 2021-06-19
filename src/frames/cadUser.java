@@ -7,6 +7,7 @@ package frames;
 
 import DAO.UsuariosDAO;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import object.Usuario;
 
 /**
@@ -32,6 +33,14 @@ public class cadUser extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        alterar = new javax.swing.JFrame();
+        painelBusca = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        textCadProdBusca = new javax.swing.JTextField();
+        btnBusca = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabelaBusca = new javax.swing.JTable();
+        btnBusca1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         labelCadUserNome = new javax.swing.JLabel();
         textCadUserNome = new javax.swing.JTextField();
@@ -41,10 +50,111 @@ public class cadUser extends javax.swing.JFrame {
         textCadUserLogin = new javax.swing.JTextField();
         textCadUserPassword = new javax.swing.JPasswordField();
         textCadUserPasswordConfirm = new javax.swing.JPasswordField();
+        textCod = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         btnUserSalvar = new javax.swing.JButton();
         btnUserAlterar = new javax.swing.JButton();
-        btnUserLimpar = new javax.swing.JButton();
+        btnUserLimparExcluir = new javax.swing.JButton();
+
+        alterar.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        painelBusca.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel9.setText("Digite nome ou número do Usuarios: (em branco para todos)");
+
+        btnBusca.setText("Buscar");
+        btnBusca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscaActionPerformed(evt);
+            }
+        });
+
+        tabelaBusca.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Cod", "Nome", "Login"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabelaBusca.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tabelaBusca.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(tabelaBusca);
+
+        btnBusca1.setText("Selecionar");
+        btnBusca1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBusca1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout painelBuscaLayout = new javax.swing.GroupLayout(painelBusca);
+        painelBusca.setLayout(painelBuscaLayout);
+        painelBuscaLayout.setHorizontalGroup(
+            painelBuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelBuscaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(painelBuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(painelBuscaLayout.createSequentialGroup()
+                        .addGroup(painelBuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addGroup(painelBuscaLayout.createSequentialGroup()
+                                .addComponent(textCadProdBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnBusca)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(painelBuscaLayout.createSequentialGroup()
+                .addGap(186, 186, 186)
+                .addComponent(btnBusca1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        painelBuscaLayout.setVerticalGroup(
+            painelBuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelBuscaLayout.createSequentialGroup()
+                .addGroup(painelBuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(painelBuscaLayout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(btnBusca))
+                    .addGroup(painelBuscaLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(textCadProdBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnBusca1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout alterarLayout = new javax.swing.GroupLayout(alterar.getContentPane());
+        alterar.getContentPane().setLayout(alterarLayout);
+        alterarLayout.setHorizontalGroup(
+            alterarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(alterarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(painelBusca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        alterarLayout.setVerticalGroup(
+            alterarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, alterarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(painelBusca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("cadastro de usuario");
@@ -91,6 +201,16 @@ public class cadUser extends javax.swing.JFrame {
             }
         });
 
+        textCod.setEditable(false);
+        textCod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textCodActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setText("Cod:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -99,21 +219,29 @@ public class cadUser extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(textCadUserPasswordConfirm, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(labelCadUserNome)
-                        .addComponent(labelCadUserNome1)
-                        .addComponent(labelCadUserNome2)
-                        .addComponent(textCadUserNome)
-                        .addComponent(textCadUserLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                        .addComponent(labelCadUserNome3)
-                        .addComponent(textCadUserPassword)))
-                .addContainerGap(349, Short.MAX_VALUE))
+                    .addComponent(labelCadUserNome, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelCadUserNome1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelCadUserNome2, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(textCadUserNome, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(textCadUserLogin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                    .addComponent(labelCadUserNome3, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(textCadUserPassword, javax.swing.GroupLayout.Alignment.LEADING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(textCod, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(labelCadUserNome)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(labelCadUserNome))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel5)
+                        .addComponent(textCod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(textCadUserNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -147,10 +275,10 @@ public class cadUser extends javax.swing.JFrame {
             }
         });
 
-        btnUserLimpar.setText("LIMPAR");
-        btnUserLimpar.addActionListener(new java.awt.event.ActionListener() {
+        btnUserLimparExcluir.setText("LIMPAR");
+        btnUserLimparExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUserLimparActionPerformed(evt);
+                btnUserLimparExcluirActionPerformed(evt);
             }
         });
 
@@ -164,7 +292,7 @@ public class cadUser extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addComponent(btnUserAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnUserLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnUserLimparExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(46, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -174,7 +302,7 @@ public class cadUser extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(btnUserAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnUserSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnUserLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnUserLimparExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
@@ -227,6 +355,9 @@ public class cadUser extends javax.swing.JFrame {
 
     private void btnUserAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserAlterarActionPerformed
         // TODO add your handling code here:
+        this.alterar.setVisible(true);
+        this.alterar.setLocationRelativeTo(this);
+        this.alterar.setSize(610, 334);
     }//GEN-LAST:event_btnUserAlterarActionPerformed
 
     private void textCadUserNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCadUserNomeActionPerformed
@@ -255,10 +386,90 @@ public class cadUser extends javax.swing.JFrame {
          textCadUserLogin.setCaretPosition(pos);
     }//GEN-LAST:event_textCadUserLoginKeyReleased
 
-    private void btnUserLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserLimparActionPerformed
+    private void btnUserLimparExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserLimparExcluirActionPerformed
         // TODO add your handling code here:
-        limpar();
-    }//GEN-LAST:event_btnUserLimparActionPerformed
+        if(textCod.getText().equals("")){
+            limpar();
+        }
+        else{
+            try {
+                int r = JOptionPane.showConfirmDialog(null, "Deseja excluir o item de Codigo "+ textCod.getText()+ "?");
+                /*
+                   0 ==sim
+                   1 ==nao
+                   2 == cancelar
+                */
+                if(r ==0){
+                    //chamada a funçao de excluir
+                    Usuario p = new Usuario();
+                    UsuariosDAO dao = new UsuariosDAO();
+                    p.setIdUser(Integer.parseInt(textCod.getText()));
+                    
+                    dao.deleteCod(p);
+                    limpar();
+                }
+                if(r ==1){
+                    //do nothing
+                }
+                if(r ==2){
+                    this.btnUserLimparExcluir.setText("LIMPAR");
+                    limpar();
+                }
+            } catch (Exception e) {
+            }
+        }
+        
+    }//GEN-LAST:event_btnUserLimparExcluirActionPerformed
+
+    private void btnBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaActionPerformed
+        // TODO add your handling code here:
+        if(textCadProdBusca.getText().equals("")){
+            UsuariosDAO DAO = new UsuariosDAO();
+            DefaultTableModel model = (DefaultTableModel) tabelaBusca.getModel();
+            model.setNumRows(0);
+            try {
+                for (Usuario u : DAO.getUsuarios()){
+                    // adiciona a tabela
+                    model.addRow(new Object[]{u.getIdUser(), u.getUserName(), u.getUserLogin()});
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e);
+
+            }
+        }else{
+
+        }
+
+        jScrollPane1.setViewportView(tabelaBusca);
+    }//GEN-LAST:event_btnBuscaActionPerformed
+
+    private void btnBusca1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusca1ActionPerformed
+        // TODO add your handling code here:
+        try {
+            Usuario user = new Usuario();
+            UsuariosDAO dao = new UsuariosDAO();
+
+            user.setIdUser(this.tabelaBusca.getSelectedRow()+1);
+
+            for(Usuario u: dao.procuraCod(user)){
+                textCod.setText(String.valueOf(u.getIdUser()));
+                textCadUserLogin.setText(u.getUserLogin());
+                textCadUserNome.setText(u.getUserName());
+                textCadUserPassword.setText(u.getUserPassword());
+                textCadUserPasswordConfirm.setText(u.getUserPassword());
+
+            }
+            this.btnUserLimparExcluir.setText("EXCLUIR");
+            this.alterar.dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e,"erro",0);
+        }
+
+    }//GEN-LAST:event_btnBusca1ActionPerformed
+
+    private void textCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCodActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textCodActionPerformed
 
     /**
      * @param args the command line arguments
@@ -296,25 +507,36 @@ public class cadUser extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JFrame alterar;
+    private javax.swing.JButton btnBusca;
+    private javax.swing.JButton btnBusca1;
     private javax.swing.JButton btnUserAlterar;
-    private javax.swing.JButton btnUserLimpar;
+    private javax.swing.JButton btnUserLimparExcluir;
     private javax.swing.JButton btnUserSalvar;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelCadUserNome;
     private javax.swing.JLabel labelCadUserNome1;
     private javax.swing.JLabel labelCadUserNome2;
     private javax.swing.JLabel labelCadUserNome3;
+    private javax.swing.JPanel painelBusca;
+    private javax.swing.JTable tabelaBusca;
+    private javax.swing.JTextField textCadProdBusca;
     private javax.swing.JTextField textCadUserLogin;
     private javax.swing.JTextField textCadUserNome;
     private javax.swing.JPasswordField textCadUserPassword;
     private javax.swing.JPasswordField textCadUserPasswordConfirm;
+    private javax.swing.JTextField textCod;
     // End of variables declaration//GEN-END:variables
     public void limpar(){
         textCadUserLogin.setText("");
         textCadUserNome.setText("");
         textCadUserPassword.setText("");
         textCadUserPasswordConfirm.setText("");
+        textCod.setText("");
     }
 
 }

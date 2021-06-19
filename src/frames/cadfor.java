@@ -53,10 +53,12 @@ public class cadfor extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         textFoneForne = new javax.swing.JFormattedTextField();
         textNomeForne = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        textCod = new javax.swing.JTextField();
         jPanel18 = new javax.swing.JPanel();
         btnCadForneSalvar = new javax.swing.JButton();
-        jButton50 = new javax.swing.JButton();
-        jButton51 = new javax.swing.JButton();
+        btnCadForneAlterar = new javax.swing.JButton();
+        btnCadForneLimparExcluir = new javax.swing.JButton();
 
         alterar.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -213,6 +215,16 @@ public class cadfor extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setText("Cod:");
+
+        textCod.setEditable(false);
+        textCod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textCodActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -227,31 +239,40 @@ public class cadfor extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel3))
-                                .addGap(193, 193, 193))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(textNomeForne, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)))
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel3)
+                            .addComponent(textNomeForne, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(TextCnpjforne, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
                             .addComponent(jLabel9)
-                            .addComponent(jLabel2)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(textCod, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(3, 3, 3))))
                     .addComponent(textCadForneEmail))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(7, 7, 7))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(7, 7, 7))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(textCod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TextCnpjforne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -280,17 +301,17 @@ public class cadfor extends javax.swing.JFrame {
             }
         });
 
-        jButton50.setText("ALTERAR");
-        jButton50.addActionListener(new java.awt.event.ActionListener() {
+        btnCadForneAlterar.setText("ALTERAR");
+        btnCadForneAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton50ActionPerformed(evt);
+                btnCadForneAlterarActionPerformed(evt);
             }
         });
 
-        jButton51.setText("LIMPAR");
-        jButton51.addActionListener(new java.awt.event.ActionListener() {
+        btnCadForneLimparExcluir.setText("LIMPAR");
+        btnCadForneLimparExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton51ActionPerformed(evt);
+                btnCadForneLimparExcluirActionPerformed(evt);
             }
         });
 
@@ -302,9 +323,9 @@ public class cadfor extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addComponent(btnCadForneSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14)
-                .addComponent(jButton50, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCadForneAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton51, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCadForneLimparExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel18Layout.setVerticalGroup(
@@ -312,9 +333,9 @@ public class cadfor extends javax.swing.JFrame {
             .addGroup(jPanel18Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jButton50, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCadForneAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCadForneSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton51, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCadForneLimparExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18))
         );
 
@@ -354,12 +375,12 @@ public class cadfor extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_textCadForneSetorActionPerformed
 
-    private void jButton50ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton50ActionPerformed
+    private void btnCadForneAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadForneAlterarActionPerformed
         // TODO add your handling code here:
         this.alterar.setVisible(true);
         this.alterar.setLocationRelativeTo(this);
         this.alterar.setSize(573, 320);
-    }//GEN-LAST:event_jButton50ActionPerformed
+    }//GEN-LAST:event_btnCadForneAlterarActionPerformed
 
     private void TextCnpjforneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextCnpjforneActionPerformed
         // TODO add your handling code here:
@@ -380,7 +401,8 @@ public class cadfor extends javax.swing.JFrame {
            
         }
         else{
-            try {
+            if(textCod.getText().equals("")){
+                try {
                 Fornecedor forne = new Fornecedor();
                 forne.setNomeForne(textNomeForne.getText());
                 forne.setCnpj(String.valueOf(TextCnpjforne.getText()));
@@ -392,19 +414,80 @@ public class cadfor extends javax.swing.JFrame {
                 dao.save(forne);
                 
                 
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "existem campos preenchidos incorretamente");
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "existem campos preenchidos incorretamente");
+                }
             }
+            else{
+                int r = JOptionPane.showConfirmDialog(null,"Deseja Realizar as alterações no cadastro?");
+                //0 = sim
+                //1 = não
+                //2 = cancelar
+                if(r == 0 ){
+                    try {
+                        Fornecedor forne = new Fornecedor();
+                        FornecedoresDAO dao =new FornecedoresDAO();
+
+                        forne.setIdForne(Integer.parseInt(textCod.getText()));
+                        forne.setNomeForne(textNomeForne.getText());
+                        forne.setCnpj(TextCnpjforne.getText());
+                        forne.setFone(textFoneForne.getText());
+                        forne.setEmail(textCadForneEmail.getText());
+                   
+                        dao.update(forne);
+                   
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, e);
+                    }
+                }
+                if(r == 1){
+                    //do nothing
+                }
+                if(r ==2){
+                    limpar();
+                }
+            }
+            
             
             
         }
         
     }//GEN-LAST:event_btnCadForneSalvarActionPerformed
 
-    private void jButton51ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton51ActionPerformed
+    private void btnCadForneLimparExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadForneLimparExcluirActionPerformed
         // TODO add your handling code here:
-        limpar();
-    }//GEN-LAST:event_jButton51ActionPerformed
+        if(textCod.getText().equals("")){
+            limpar();
+        }
+        else{
+            try {
+                int r = JOptionPane.showConfirmDialog(null, "Deseja excluir o item de Codigo "+ textCod.getText()+ "?");
+                /*
+                   0 ==sim
+                   1 ==nao
+                   2 == cancelar
+                */
+                if(r ==0){
+                    //chamada a funçao de excluir
+                    Fornecedor f = new Fornecedor();
+                    FornecedoresDAO dao = new FornecedoresDAO();
+                    f.setIdForne(Integer.parseInt(textCod.getText()));
+                    
+                    dao.deleteCod(f);
+                    limpar();
+                }
+                if(r ==1){
+                    //do nothing
+                }
+                if(r ==2){
+                    this.btnCadForneLimparExcluir.setText("LIMPAR");
+                    limpar();
+                }
+            } catch (Exception e) {
+            }
+        }
+        
+    }//GEN-LAST:event_btnCadForneLimparExcluirActionPerformed
 
     private void btnBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaActionPerformed
         // TODO add your handling code here:
@@ -441,15 +524,20 @@ public class cadfor extends javax.swing.JFrame {
                 textCadForneSetor.setText(p.getSetor());
                 textFoneForne.setText(p.getFone());
                 textNomeForne.setText(p.getNomeForne());
-
+                textCod.setText(String.valueOf(p.getIdForne()));
+                
             }
-
+            this.btnCadForneLimparExcluir.setText("EXCLUIR");
             this.alterar.dispose();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e,"erro",0);
         }
 
     }//GEN-LAST:event_btnBusca1ActionPerformed
+
+    private void textCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCodActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textCodActionPerformed
 
     /**
      * @param args the command line arguments
@@ -492,14 +580,15 @@ public class cadfor extends javax.swing.JFrame {
     private javax.swing.JFrame alterar;
     private javax.swing.JButton btnBusca;
     private javax.swing.JButton btnBusca1;
+    private javax.swing.JButton btnCadForneAlterar;
+    private javax.swing.JButton btnCadForneLimparExcluir;
     private javax.swing.JButton btnCadForneSalvar;
-    private javax.swing.JButton jButton50;
-    private javax.swing.JButton jButton51;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel18;
@@ -509,6 +598,7 @@ public class cadfor extends javax.swing.JFrame {
     private javax.swing.JTextField textCadForBusca;
     private javax.swing.JTextField textCadForneEmail;
     private javax.swing.JTextField textCadForneSetor;
+    private javax.swing.JTextField textCod;
     private javax.swing.JFormattedTextField textFoneForne;
     private javax.swing.JTextField textNomeForne;
     // End of variables declaration//GEN-END:variables
@@ -518,5 +608,6 @@ public class cadfor extends javax.swing.JFrame {
         textCadForneSetor.setText("");
         textFoneForne.setText("");
         textNomeForne.setText("");
+        textCod.setText("");
     }
 }

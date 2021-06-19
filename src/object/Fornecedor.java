@@ -16,7 +16,8 @@ public class Fornecedor {
     private String fone;
     private String email;
     private String setor;
-
+     
+    
     public String getEmail() {
         return email;
     }

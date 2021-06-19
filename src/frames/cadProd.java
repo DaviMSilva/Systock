@@ -65,10 +65,12 @@ public class cadProd extends javax.swing.JFrame {
         textTotal = new javax.swing.JFormattedTextField();
         jLabel8 = new javax.swing.JLabel();
         textValUni = new javax.swing.JTextField();
+        textCod = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         btnProdSalvar = new javax.swing.JButton();
         btnProdAlterar = new javax.swing.JButton();
-        btnProdLimpar = new javax.swing.JButton();
+        btnProdLimparExcluir = new javax.swing.JButton();
 
         alterar.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -128,9 +130,9 @@ public class cadProd extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(painelBuscaLayout.createSequentialGroup()
-                .addGap(223, 223, 223)
-                .addComponent(btnBusca1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addGap(245, 245, 245))
+                .addGap(186, 186, 186)
+                .addComponent(btnBusca1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         painelBuscaLayout.setVerticalGroup(
             painelBuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,9 +146,9 @@ public class cadProd extends javax.swing.JFrame {
                         .addComponent(textCadProdBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnBusca1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(13, 13, 13))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout alterarLayout = new javax.swing.GroupLayout(alterar.getContentPane());
@@ -162,8 +164,8 @@ public class cadProd extends javax.swing.JFrame {
             alterarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(alterarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(painelBusca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(painelBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -267,6 +269,16 @@ public class cadProd extends javax.swing.JFrame {
             }
         });
 
+        textCod.setEditable(false);
+        textCod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textCodActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel10.setText("Cod:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -274,10 +286,6 @@ public class cadProd extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(383, 383, 383)
-                        .addComponent(jLabel2))
                     .addComponent(jLabel3)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(textProdNome, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -303,13 +311,25 @@ public class cadProd extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(textTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(textTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel10)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(textCod, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addGap(383, 383, 383)
+                            .addComponent(jLabel2))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(textCod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
@@ -338,7 +358,7 @@ public class cadProd extends javax.swing.JFrame {
                     .addComponent(textTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
                     .addComponent(textValUni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -357,10 +377,10 @@ public class cadProd extends javax.swing.JFrame {
             }
         });
 
-        btnProdLimpar.setText("LIMPAR");
-        btnProdLimpar.addActionListener(new java.awt.event.ActionListener() {
+        btnProdLimparExcluir.setText("LIMPAR");
+        btnProdLimparExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProdLimparActionPerformed(evt);
+                btnProdLimparExcluirActionPerformed(evt);
             }
         });
 
@@ -374,11 +394,11 @@ public class cadProd extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addComponent(btnProdAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnProdLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnProdLimparExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnProdAlterar, btnProdLimpar, btnProdSalvar});
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnProdAlterar, btnProdLimparExcluir, btnProdSalvar});
 
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -387,11 +407,11 @@ public class cadProd extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(btnProdAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnProdSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnProdLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnProdLimparExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18))
         );
 
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnProdAlterar, btnProdLimpar, btnProdSalvar});
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnProdAlterar, btnProdLimparExcluir, btnProdSalvar});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -411,11 +431,11 @@ public class cadProd extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(10, 10, 10))
         );
 
         pack();
@@ -489,7 +509,8 @@ public class cadProd extends javax.swing.JFrame {
            
         }
         else{
-            try {
+            if(textCod.getText().equals("")){
+                try {
                 // falta ajeitar a data ;
                 
                 SimpleDateFormat format = new SimpleDateFormat("##/##/####");
@@ -508,8 +529,40 @@ public class cadProd extends javax.swing.JFrame {
                
                 
                 
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "existem campos preenchidos incorretamente" + e);
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "existem campos preenchidos incorretamente" + e);
+                }
+            }
+            else{
+                int r = JOptionPane.showConfirmDialog(null,"Deseja Realizar as alterações no cadastro?");
+                //0 = sim
+                //1 = não
+                //2 = cancelar
+                if(r == 0 ){
+                    try {
+                        Produto p = new Produto();
+                        ProdutosDAO dao =new ProdutosDAO();
+
+                        p.setCod(Integer.parseInt(textCod.getText()));
+                        p.setNome(textProdNome.getText());
+                        p.setDesc(textProdDesc.getText());
+                        p.setQnt(Integer.parseInt(textQnt.getText()));
+                        p.setValUni(Double.parseDouble(textValUni.getText()));
+                        p.setValTotal(p.getQnt()*p.getValUni());
+                        p.setCodFor(Integer.parseInt(textProdNumForne.getText()));
+                   
+                        dao.update(p);
+                   
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "erro java " +e);
+                    }
+                }
+                if(r == 1){
+                    //do nothing
+                }
+                if(r ==2){
+                    limpar();
+                }
             }
         }
     }//GEN-LAST:event_btnProdSalvarActionPerformed
@@ -523,10 +576,40 @@ public class cadProd extends javax.swing.JFrame {
 
     }//GEN-LAST:event_textValUniKeyReleased
 
-    private void btnProdLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdLimparActionPerformed
+    private void btnProdLimparExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdLimparExcluirActionPerformed
         // TODO add your handling code here:
-        limpar();
-    }//GEN-LAST:event_btnProdLimparActionPerformed
+        if(textCod.getText().equals("")){
+             limpar();
+        }
+        else{
+            try {
+                int r = JOptionPane.showConfirmDialog(null, "Deseja excluir o item de Codigo "+ textCod.getText()+ "?");
+                /*
+                   0 ==sim
+                   1 ==nao
+                   2 == cancelar
+                */
+                if(r ==0){
+                    //chamada a funçao de excluir
+                    Produto p = new Produto();
+                    ProdutosDAO dao = new ProdutosDAO();
+                    p.setCod(Integer.parseInt(textCod.getText()));
+                    
+                    dao.deleteCod(p);
+                    limpar();
+                }
+                if(r ==1){
+                    //do nothing
+                }
+                if(r ==2){
+                    this.btnProdLimparExcluir.setText("LIMPAR");
+                    limpar();
+                }
+            } catch (Exception e) {
+            }
+        }
+       
+    }//GEN-LAST:event_btnProdLimparExcluirActionPerformed
 
     private void btnBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaActionPerformed
         // TODO add your handling code here:
@@ -566,16 +649,22 @@ jScrollPane1.setViewportView(tabelaBusca);
                 textQnt.setText(String.valueOf(p.getQnt()));
                 textTotal.setText(String.valueOf(p.getValTotal()));
                 textValUni.setText(String.valueOf(p.getValUni()));
+                textCod.setText(String.valueOf(p.getCod()));
+                
                 
                 
             }
-        
+            this.btnProdLimparExcluir.setText("EXCLUIR");
             this.alterar.dispose();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e,"erro",0);
         }
         
     }//GEN-LAST:event_btnBusca1ActionPerformed
+
+    private void textCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCodActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textCodActionPerformed
 
     /**
      * @param args the command line arguments
@@ -617,9 +706,10 @@ jScrollPane1.setViewportView(tabelaBusca);
     private javax.swing.JButton btnBusca;
     private javax.swing.JButton btnBusca1;
     private javax.swing.JButton btnProdAlterar;
-    private javax.swing.JButton btnProdLimpar;
+    private javax.swing.JButton btnProdLimparExcluir;
     private javax.swing.JButton btnProdSalvar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -634,6 +724,7 @@ jScrollPane1.setViewportView(tabelaBusca);
     private javax.swing.JPanel painelBusca;
     private javax.swing.JTable tabelaBusca;
     private javax.swing.JTextField textCadProdBusca;
+    private javax.swing.JTextField textCod;
     private javax.swing.JTextField textProdDesc;
     private javax.swing.JTextField textProdNome;
     private javax.swing.JTextField textProdNomeForne;
@@ -652,6 +743,8 @@ jScrollPane1.setViewportView(tabelaBusca);
         textQnt.setText("");
         textTotal.setText("");
         textValUni.setText("");
+        textCod.setText("");
+        
         
     }
 

@@ -56,40 +56,6 @@ public class ProdutosDAO {
             }
         }
     }
-    
-    public void deleteForCod(Produto produto){
-        String sql ="DELETE FROM produtos WHERE idProd = ?";
-        
-        Connection con = null;
-        PreparedStatement pstm = null;
-        
-        try {
-            // criar conexao
-            con = (Connection) factory.createConnection();
-            
-            pstm = con.prepareStatement(sql);
-            //passa valores
-            pstm.setInt(1, produto.getCod());
-            //execute
-            pstm.execute();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }finally{
-            try {
-                
-                //fechar conexoes
-                if(pstm!=null){
-                    pstm.close();
-                }
-                if(con!= null){
-                    con.close();
-                }
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null,"erro ao fechar conexoes "+ e);
-            }
-        }
-        
-    }
 
 
     public List<Produto> getProdutos() throws SQLException{
@@ -185,5 +151,73 @@ public class ProdutosDAO {
         }
       return prod;       
     }
+    
+    
+    public void update(Produto p){
+        String sql = "UPDATE produtos SET nomeProd = ? , descProd= ?,qntProd=? , valUnitProd=?,idForne=? ,valTotalProd=?, validade=?  WHERE idProd = ?";
+        
+        Connection con = null;
+        PreparedStatement pstm = null;
+        
+        try {
+            con = factory.createConnection();
+            pstm = con.prepareStatement(sql);
+            
+            pstm.setString(1, p.getNome());
+            
+            pstm.setString(2, p.getDesc());
+            pstm.setInt(3, p.getQnt());
+            pstm.setDouble(4, p.getValUni());
+            pstm.setInt(5, p.getCodFor());
+            pstm.setDouble(6, p.getValTotal());
+            pstm.setDate(7, (Date) p.getValidade());
+            pstm.setInt(8, p.getCod());
+            
+            pstm.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Atualizado com Sucesso!");
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e, "erro",2);
+        }
+        finally{
+            factory.closeConection(con, pstm);
+        }
+        
+    }
+    
+    public void deleteCod(Produto p){
+        String sql ="DELETE FROM produtos WHERE idProd = ?";
+        
+        
+        Connection con = null;
+        PreparedStatement pstm = null;
+        
+        
+        try {
+            // criar conexao
+            con = (Connection) factory.createConnection();
+            
+            pstm = con.prepareStatement(sql);
+            
+            pstm.setInt(1, p.getCod());
+            
+            pstm.executeUpdate();
+            //passa valores
+            
+            JOptionPane.showMessageDialog(null, "Excluido com Sucesso!");
+            
+        }catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao Excluir!\n Item que deseja excluir está sendo usado em outra tabela.");
+        }finally{
+            try {
+                
+                //fechar conexoes
+                factory.closeConection(con, pstm);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null,"erro ao fechar conexoes "+ e);
+            }
+        }
+
+    } 
 
 }

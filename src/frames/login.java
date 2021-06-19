@@ -154,9 +154,17 @@ public class login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void PasswordFieldLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordFieldLoginActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PasswordFieldLoginActionPerformed
+
+    private void BtnLoginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnLoginKeyPressed
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnLoginKeyPressed
+
     private void BtnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLoginActionPerformed
-        
-        
+
         if(TextUser.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Existem campos obrigatorios em branco");
         }
@@ -166,7 +174,7 @@ public class login extends javax.swing.JFrame {
                 user.setUserLogin(TextUser.getText());
                 user.setUserPassword(String.valueOf(PasswordFieldLogin.getPassword()));
                 UsuariosDAO dao = new UsuariosDAO();
-                
+
                 if(dao.auth(user)){
                     new menu().setVisible(true);
                     this.dispose();
@@ -174,45 +182,35 @@ public class login extends javax.swing.JFrame {
                 else{
                     JOptionPane.showMessageDialog(null, "Dados incorretos ou Usuário inexistente!");
                 }
-                   
+
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Usuario e/ou Senha incorreto(s)");
             }
         }
 
-// TODO add your handling code here:
-    }//GEN-LAST:event_BtnLoginActionPerformed
-
-    private void PasswordFieldLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordFieldLoginActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_PasswordFieldLoginActionPerformed
+    }//GEN-LAST:event_BtnLoginActionPerformed
 
     private void TextUserKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextUserKeyTyped
 
-        
         // TODO add your handling code here:
     }//GEN-LAST:event_TextUserKeyTyped
 
-    private void TextUserFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextUserFocusLost
-   
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TextUserFocusLost
-
-    private void TextUserKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextUserKeyPressed
-           // TODO add your handling code here:
-    }//GEN-LAST:event_TextUserKeyPressed
-
     private void TextUserKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextUserKeyReleased
-         int pos = TextUser.getCaretPosition();
-         TextUser.setText(TextUser.getText().toUpperCase());
-         TextUser.setCaretPosition(pos);
+        int pos = TextUser.getCaretPosition();
+        TextUser.setText(TextUser.getText().toUpperCase());
+        TextUser.setCaretPosition(pos);
         // TODO add your handling code here:
     }//GEN-LAST:event_TextUserKeyReleased
 
-    private void BtnLoginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnLoginKeyPressed
-        
+    private void TextUserKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextUserKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_BtnLoginKeyPressed
+    }//GEN-LAST:event_TextUserKeyPressed
+
+    private void TextUserFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextUserFocusLost
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextUserFocusLost
 
     /**
      * @param args the command line arguments

@@ -156,11 +156,68 @@ public class FornecedoresDAO {
         return fornecedores;
     
     }
+    
+    public void update(Fornecedor f){
+        String sql = "UPDATE fornecedores SET nomeForne =?, cnpj =?, fone =?, setor =?, email =?  WHERE idForne = ?";
+        
+        Connection con = null;
+        PreparedStatement pstm = null;
+        
+        try {
+            con = factory.createConnection();
+            pstm = con.prepareStatement(sql);
+            pstm.setString(1, f.getNomeForne());
+            pstm.setString(2, f.getCnpj());
+            pstm.setString(3, f.getFone());
+            pstm.setString(4, f.getSetor());
+            pstm.setString(5, f.getEmail());
+            pstm.setInt(6, f.getIdForne());
+            
+            pstm.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Atualizado com Sucesso!");
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e, "erro",2);
+        }
+        finally{
+            factory.closeConection(con, pstm);
+        }
+    }
+    
+    public void deleteCod(Fornecedor f){
+        String sql ="DELETE FROM fornecedores WHERE idForne = ?";
+        
+        
+        Connection con = null;
+        PreparedStatement pstm = null;
+        
+        
+        try {
+            // criar conexao
+            con = (Connection) factory.createConnection();
+            
+            pstm = con.prepareStatement(sql);
+            
+            pstm.setInt(1, f.getIdForne());
+            
+            pstm.executeUpdate();
+            //passa valores
+            
+            JOptionPane.showMessageDialog(null, "Excluido com Sucesso!");
+            
+        }catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao Excluir!\n Item que deseja excluir está sendo usado em outra tabela.");
+        }finally{
+            try {
+                
+                //fechar conexoes
+                factory.closeConection(con, pstm);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null,"erro ao fechar conexoes "+ e);
+            }
+        }
 
+    } 
 }
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
