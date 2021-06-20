@@ -18,15 +18,15 @@ public class Systock {
     public static void main(String[] args) throws ClassNotFoundException, SQLException{
         // TODO code application logic here
         Connection con = factory.createConnection();
-        
+        login l = new login();
         //testar se esta ativo
         if (con!= null){
-            JOptionPane.showMessageDialog(null, "conexao sucessida");
+            l.ConStatus(true);
         
             factory.closeConection(con);
             
         }
-        new login().setVisible(true);
+        l.setVisible(true);
     }
     
 }

@@ -21,13 +21,13 @@ public class Produto {
     private double valUni;
     private int codFor;
     private double valTotal;
-    private Date validade;
+    private String validade;
 
-    public Date getValidade() {
+    public String getValidade() {
         return validade;
     }
 
-    public void setValidade(Date validade) {
+    public void setValidade(String validade) {
         this.validade = validade;
     }
 

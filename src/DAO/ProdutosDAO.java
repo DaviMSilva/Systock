@@ -23,7 +23,7 @@ import javax.swing.JOptionPane;
 public class ProdutosDAO {
     
     public void save (Produto produto) throws SQLException, ClassNotFoundException{
-        String sql ="INSERT INTO produtos(nomeProd, descProd,qntProd, valUnitProd,idForne,valTotalProd, validade) VALUES(?,?,?,?,?,?,?)";
+        String sql ="INSERT INTO produtos set validade = STR_TO_DATE(?, ?), nomeProd=?, descProd=?,qntProd=?, valUnitProd=?,idForne=?,valTotalProd=?";
         Connection con = null;
         PreparedStatement pstm = null;
         
@@ -33,13 +33,15 @@ public class ProdutosDAO {
             
             pstm = con.prepareStatement(sql);
             //passa valores
-            pstm.setString(1, produto.getNome());
-            pstm.setString(2, produto.getDesc());
-            pstm.setInt(3, produto.getQnt());
-            pstm.setDouble(4, produto.getValUni());
-            pstm.setInt(5, produto.getCodFor());
-            pstm.setDouble(6, produto.getValTotal());
-            pstm.setDate(7, (Date) produto.getValidade());
+            pstm.setString(1,produto.getValidade());
+            pstm.setString(2, "%d/%m/%Y");
+            pstm.setString(3, produto.getNome());
+            pstm.setString(4, produto.getDesc());
+            pstm.setInt(5, produto.getQnt());
+            pstm.setDouble(6, produto.getValUni());
+            pstm.setInt(7, produto.getCodFor());
+            pstm.setDouble(8, produto.getValTotal());
+            
             //execute
             pstm.executeUpdate();
             JOptionPane.showMessageDialog(null, "salvo com sucesso!");
@@ -59,7 +61,7 @@ public class ProdutosDAO {
 
 
     public List<Produto> getProdutos() throws SQLException{
-        String sql ="SELECT * FROM produtos";
+        String sql ="SELECT *, date_format(validade,?) as validadef FROM produtos";
         List<Produto> produtos = new ArrayList<Produto>();
         
         
@@ -71,7 +73,8 @@ public class ProdutosDAO {
         try {
             con = factory.createConnection();
             pstm = con.prepareStatement(sql);
-            
+           
+            pstm.setString(1, "%d/%m/%Y");
             rset = pstm.executeQuery();
             
             while(rset.next()){
@@ -91,7 +94,7 @@ public class ProdutosDAO {
                 // recupera valor total 
                 produto.setValTotal(rset.getDouble("valTotalProd"));
                 // recupera validade 
-                produto.setValidade(rset.getDate("validade"));
+                produto.setValidade(rset.getString("validadef"));
                 
                 produtos.add(produto);
             }
@@ -109,7 +112,7 @@ public class ProdutosDAO {
     }
     
     public List<Produto> procuraCod(Produto p){
-        String sql ="SELECT * FROM produtos WHERE idProd = ?";
+        String sql ="SELECT *, date_format(validade,?) AS validadef FROM produtos WHERE idProd = ?";
         List <Produto> prod = new ArrayList<Produto>();
         
         Connection con = null;
@@ -121,8 +124,9 @@ public class ProdutosDAO {
             con = (Connection) factory.createConnection();
             
             pstm = con.prepareStatement(sql);
-            
-            pstm.setInt(1, p.getCod());
+           
+            pstm.setString(1, "%d/%m/%Y");
+            pstm.setInt(2, p.getCod());
             
             rs = pstm.executeQuery();
             //passa valores
@@ -135,6 +139,7 @@ public class ProdutosDAO {
                 preturn.setValUni(rs.getDouble("valUnitProd"));
                 preturn.setValTotal(rs.getDouble("valTotalProd"));
                 preturn.setCodFor(rs.getInt("idForne"));
+                preturn.setValidade(rs.getString("validadef"));
                 prod.add(preturn);
             }     
             
@@ -154,28 +159,40 @@ public class ProdutosDAO {
     
     
     public void update(Produto p){
-        String sql = "UPDATE produtos SET nomeProd = ? , descProd= ?,qntProd=? , valUnitProd=?,idForne=? ,valTotalProd=?, validade=?  WHERE idProd = ?";
+        String sql = "UPDATE produtos SET nomeProd = ? , descProd= ?,qntProd=? , valUnitProd=?,idForne=? ,valTotalProd=?, validade=STR_TO_DATE( ?, ?)  WHERE idProd = ?";
+        String sql1 ="UPDATE produtos SET qntProd =? WHERE idProd = ?";
         
         Connection con = null;
         PreparedStatement pstm = null;
         
         try {
             con = factory.createConnection();
-            pstm = con.prepareStatement(sql);
             
-            pstm.setString(1, p.getNome());
+            if(p.getNome()==null){
+                pstm = con.prepareStatement(sql1);
+                pstm.setInt(1, p.getQnt());
+                pstm.setInt(2, p.getCod());
+                pstm.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Executado com sucesso!");
+                
+            }else{
+                
+                pstm = con.prepareStatement(sql);        
+                pstm.setString(1, p.getNome());
+
+                pstm.setString(2, p.getDesc());
+                pstm.setInt(3, p.getQnt());
+                pstm.setDouble(4, p.getValUni());
+                pstm.setInt(5, p.getCodFor());
+                pstm.setDouble(6, p.getValTotal());
+                pstm.setString(7,p.getValidade());
+                pstm.setString(8, "%d/%m/%Y");
+                pstm.setInt(9, p.getCod());
+
+                pstm.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Atualizado com Sucesso!");
             
-            pstm.setString(2, p.getDesc());
-            pstm.setInt(3, p.getQnt());
-            pstm.setDouble(4, p.getValUni());
-            pstm.setInt(5, p.getCodFor());
-            pstm.setDouble(6, p.getValTotal());
-            pstm.setDate(7, (Date) p.getValidade());
-            pstm.setInt(8, p.getCod());
-            
-            pstm.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Atualizado com Sucesso!");
-            
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e, "erro",2);
         }

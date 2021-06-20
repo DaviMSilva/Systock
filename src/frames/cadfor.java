@@ -107,8 +107,9 @@ public class cadfor extends javax.swing.JFrame {
             .addGroup(painelBuscaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(painelBuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
                     .addGroup(painelBuscaLayout.createSequentialGroup()
+                        .addGap(75, 75, 75)
                         .addGroup(painelBuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel10)
                             .addGroup(painelBuscaLayout.createSequentialGroup()
@@ -117,10 +118,10 @@ public class cadfor extends javax.swing.JFrame {
                                 .addComponent(btnBusca)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelBuscaLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(painelBuscaLayout.createSequentialGroup()
+                .addGap(234, 234, 234)
                 .addComponent(btnBusca1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(181, 181, 181))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         painelBuscaLayout.setVerticalGroup(
             painelBuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,7 +134,7 @@ public class cadfor extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(textCadForBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnBusca1)
                 .addContainerGap())
@@ -377,9 +378,9 @@ public class cadfor extends javax.swing.JFrame {
 
     private void btnCadForneAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadForneAlterarActionPerformed
         // TODO add your handling code here:
-        this.alterar.setVisible(true);
+        this.alterar.setSize(610, 334);
         this.alterar.setLocationRelativeTo(this);
-        this.alterar.setSize(573, 320);
+        this.alterar.setVisible(true);
     }//GEN-LAST:event_btnCadForneAlterarActionPerformed
 
     private void TextCnpjforneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextCnpjforneActionPerformed
@@ -412,6 +413,7 @@ public class cadfor extends javax.swing.JFrame {
                 
                 FornecedoresDAO dao =new FornecedoresDAO();
                 dao.save(forne);
+                limpar();
                 
                 
                 } catch (Exception e) {
@@ -475,6 +477,7 @@ public class cadfor extends javax.swing.JFrame {
                     
                     dao.deleteCod(f);
                     limpar();
+                    this.btnCadForneLimparExcluir.setText("LIMPAR");
                 }
                 if(r ==1){
                     //do nothing
@@ -499,9 +502,10 @@ public class cadfor extends javax.swing.JFrame {
                 for (Fornecedor p : DAO.getFornecedores()){
                     // adiciona a tabela
                     model.addRow(new Object[]{p.getIdForne(),p.getNomeForne(),p.getCnpj(),p.getSetor(),p.getEmail(),p.getFone()});
+                    tabelaBusca.setRowSelectionInterval(0, 0);
                 }
             } catch (Exception e) {
-
+                
             }
         }else{
 
@@ -519,7 +523,7 @@ public class cadfor extends javax.swing.JFrame {
             Object obj = this.tabelaBusca.getValueAt(tabelaBusca.getSelectedRow(), 0);
             String id = obj.toString();
             
-            forne.setCod(Integer.parseInt(id));
+            forne.setIdForne(Integer.parseInt(id));
 
             for(Fornecedor p: dao.procuraCod(forne)){
                 TextCnpjforne.setText(p.getCnpj());

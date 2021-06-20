@@ -91,11 +91,11 @@ public class cadProd extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Cod", "Nome", "Cod Forne", "Qnt", "Val Uni", "Total"
+                "Cod", "Nome", "Validade", "Cod Forne", "Qnt", "Val Uni", "Total"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -119,8 +119,9 @@ public class cadProd extends javax.swing.JFrame {
             .addGroup(painelBuscaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(painelBuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
                     .addGroup(painelBuscaLayout.createSequentialGroup()
+                        .addGap(50, 50, 50)
                         .addGroup(painelBuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9)
                             .addGroup(painelBuscaLayout.createSequentialGroup()
@@ -130,25 +131,24 @@ public class cadProd extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(painelBuscaLayout.createSequentialGroup()
-                .addGap(186, 186, 186)
-                .addComponent(btnBusca1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(242, 242, 242)
+                .addComponent(btnBusca1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         painelBuscaLayout.setVerticalGroup(
             painelBuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelBuscaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(painelBuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addComponent(jLabel9)
+                .addGap(3, 3, 3)
+                .addGroup(painelBuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBusca)
-                    .addGroup(painelBuscaLayout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textCadProdBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(textCadProdBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnBusca1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(btnBusca1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout alterarLayout = new javax.swing.GroupLayout(alterar.getContentPane());
@@ -164,8 +164,8 @@ public class cadProd extends javax.swing.JFrame {
             alterarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(alterarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(painelBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(painelBusca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -471,9 +471,11 @@ public class cadProd extends javax.swing.JFrame {
 
     private void btnProdAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdAlterarActionPerformed
         // TODO add your handling code here:
-        this.alterar.setVisible(true);
+        this.alterar.setSize(650, 340);
+        
         this.alterar.setLocationRelativeTo(this);
-        this.alterar.setSize(610, 334);
+        this.alterar.setVisible(true);
+        
     }//GEN-LAST:event_btnProdAlterarActionPerformed
 
     private void textQntKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textQntKeyReleased
@@ -497,7 +499,7 @@ public class cadProd extends javax.swing.JFrame {
                 
                 
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "existem campos preenchidos incorretamente" + e);
+                JOptionPane.showMessageDialog(null, "Valor indicado deve ser um Número Inteir!", "Aviso", JOptionPane.WARNING_MESSAGE);
             }
         
     }//GEN-LAST:event_textProdNumForneKeyReleased
@@ -513,7 +515,7 @@ public class cadProd extends javax.swing.JFrame {
                 try {
                 // falta ajeitar a data ;
                 
-                SimpleDateFormat format = new SimpleDateFormat("##/##/####");
+                SimpleDateFormat format = new SimpleDateFormat("dd/mm/yyyy");
                 Produto p = new Produto();
                 p.setNome(textProdNome.getText());
                 p.setDesc(textProdDesc.getText());
@@ -522,15 +524,16 @@ public class cadProd extends javax.swing.JFrame {
                 p.setValTotal(p.getQnt()*p.getValUni());
                 p.setCodFor(Integer.parseInt(textProdNumForne.getText()));
                
-                //p.setValidade(format.parse(textProdValidade.getText()));
+                p.setValidade(textProdValidade.getText());
                 
                 ProdutosDAO dao = new ProdutosDAO();
                 dao.save(p);
+                limpar();
                
                 
                 
                 } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "existem campos preenchidos incorretamente" + e);
+                    JOptionPane.showMessageDialog(null, "existem campos preenchidos incorretamente", "Aviso", JOptionPane.WARNING_MESSAGE);
                 }
             }
             else{
@@ -549,7 +552,9 @@ public class cadProd extends javax.swing.JFrame {
                         p.setQnt(Integer.parseInt(textQnt.getText()));
                         p.setValUni(Double.parseDouble(textValUni.getText()));
                         p.setValTotal(p.getQnt()*p.getValUni());
+                    
                         p.setCodFor(Integer.parseInt(textProdNumForne.getText()));
+                        p.setValidade(textProdValidade.getText());
                    
                         dao.update(p);
                    
@@ -597,6 +602,7 @@ public class cadProd extends javax.swing.JFrame {
                     
                     dao.deleteCod(p);
                     limpar();
+                    this.btnProdLimparExcluir.setText("LIMPAR");
                 }
                 if(r ==1){
                     //do nothing
@@ -620,7 +626,8 @@ public class cadProd extends javax.swing.JFrame {
             try {
                 for (Produto p : DAO.getProdutos()){
                     // adiciona a tabela
-                    model.addRow(new Object[]{p.getCod(),p.getNome(),p.getCodFor(),p.getQnt(),p.getValUni(),p.getValTotal()});
+                    model.addRow(new Object[]{p.getCod(),p.getNome(),p.getValidade(),p.getCodFor(),p.getQnt(),p.getValUni(),p.getValTotal()});
+                    tabelaBusca.setRowSelectionInterval(0, 0);
                 }
             } catch (SQLException ex) {
                 
@@ -644,11 +651,12 @@ jScrollPane1.setViewportView(tabelaBusca);
             prod.setCod(Integer.parseInt(id));
             
             for(Produto p: dao.procuraCod(prod)){
+                
                 textProdDesc.setText(p.getDesc());
                 textProdNome.setText(p.getNome());
                 //textProdNomeForne.setText();
                 textProdNumForne.setText(String.valueOf(p.getCodFor()));
-                //textProdValidade.setText(p.getValidade());
+                textProdValidade.setText(p.getValidade());
                 textQnt.setText(String.valueOf(p.getQnt()));
                 textTotal.setText(String.valueOf(p.getValTotal()));
                 textValUni.setText(String.valueOf(p.getValUni()));

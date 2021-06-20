@@ -6,6 +6,8 @@
 package frames;
 
 import DAO.UsuariosDAO;
+import java.awt.Color;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import object.Usuario;
 
@@ -25,6 +27,14 @@ public class login extends javax.swing.JFrame {
         
         
     }
+    public void ConStatus(boolean b){
+        if(b){
+            labelConSts.setText("Online");
+        }else{
+            labelConSts.setForeground(Color.red);
+            labelConSts.setText("Offline");
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -42,6 +52,8 @@ public class login extends javax.swing.JFrame {
         BtnLogin = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         PasswordFieldLogin = new javax.swing.JPasswordField();
+        labelCon = new javax.swing.JLabel();
+        labelConSts = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -94,6 +106,13 @@ public class login extends javax.swing.JFrame {
             }
         });
 
+        labelCon.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        labelCon.setText("Conexão:");
+
+        labelConSts.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        labelConSts.setForeground(new java.awt.Color(0, 204, 51));
+        labelConSts.setText("TRUE");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -115,6 +134,11 @@ public class login extends javax.swing.JFrame {
                             .addComponent(BtnLogin)))
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(156, 156, 156))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(labelCon)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelConSts)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,7 +155,10 @@ public class login extends javax.swing.JFrame {
                     .addComponent(PasswordFieldLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(BtnLogin)
-                .addContainerGap(114, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelCon)
+                    .addComponent(labelConSts)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -174,17 +201,16 @@ public class login extends javax.swing.JFrame {
                 user.setUserLogin(TextUser.getText());
                 user.setUserPassword(String.valueOf(PasswordFieldLogin.getPassword()));
                 UsuariosDAO dao = new UsuariosDAO();
-
-                if(dao.auth(user)){
-                    new menu().setVisible(true);
-                    this.dispose();
-                }
-                else{
-                    JOptionPane.showMessageDialog(null, "Dados incorretos ou Usuário inexistente!");
-                }
+                dao.auth(user);
+                menu m = new menu();
+                m.usuario(user);
+                m.setVisible(true);
+                    
+                this.dispose();
+                
 
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Usuario e/ou Senha incorreto(s)");
+                JOptionPane.showMessageDialog(null, "Usuario e/ou Senha incorreto(s) "+ e);
             }
         }
 
@@ -255,5 +281,7 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JTextField TextUser;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel labelCon;
+    private javax.swing.JLabel labelConSts;
     // End of variables declaration//GEN-END:variables
 }

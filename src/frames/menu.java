@@ -5,6 +5,9 @@
  */
 package frames;
 
+import javax.swing.JOptionPane;
+import object.Usuario;
+
 /**
  *
  * @author ACER
@@ -17,6 +20,14 @@ public class menu extends javax.swing.JFrame {
     public menu() {
         initComponents();
         setLocationRelativeTo(this);
+        
+    }
+    public void usuario(Usuario u){
+        if(!u.getUserLogin().equals("GERENTE")){
+            BtnMenuCadUser.setEnabled(false);
+        }
+        labelNameUser.setText(u.getUserLogin());
+        
     }
 
     /**
@@ -36,6 +47,9 @@ public class menu extends javax.swing.JFrame {
         BtnMenuList = new javax.swing.JButton();
         BtnMenuCadUser = new javax.swing.JButton();
         BtnMenuRelat = new javax.swing.JButton();
+        labelUser = new javax.swing.JLabel();
+        labelNameUser = new javax.swing.JLabel();
+        btnMenuSair = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -93,6 +107,20 @@ public class menu extends javax.swing.JFrame {
             }
         });
 
+        labelUser.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        labelUser.setText("Usuario:");
+
+        labelNameUser.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        labelNameUser.setForeground(new java.awt.Color(0, 51, 255));
+        labelNameUser.setText("usuario");
+
+        btnMenuSair.setText("SAIR");
+        btnMenuSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMenuSairActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -100,19 +128,34 @@ public class menu extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BtnConsulMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnMenuAddRem, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnMenuList, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnMenuCadUser, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnMenuRelat, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnCadProd, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnCadForn, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(252, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(BtnConsulMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BtnMenuAddRem, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BtnMenuList, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BtnMenuCadUser, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BtnCadForn, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(BtnCadProd, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 257, Short.MAX_VALUE)
+                        .addComponent(labelUser)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(labelNameUser))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(BtnMenuRelat, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnMenuSair, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(BtnCadProd, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BtnCadProd, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(labelUser)
+                        .addComponent(labelNameUser)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(BtnCadForn, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -124,7 +167,9 @@ public class menu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(BtnMenuCadUser, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(BtnMenuRelat, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(BtnMenuRelat, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMenuSair, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 11, Short.MAX_VALUE))
         );
 
@@ -142,8 +187,8 @@ public class menu extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(340, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,6 +218,7 @@ public class menu extends javax.swing.JFrame {
 
     private void BtnMenuAddRemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMenuAddRemActionPerformed
         // TODO add your handling code here:
+        new AdcionarRemover().setVisible(true);
     }//GEN-LAST:event_BtnMenuAddRemActionPerformed
 
     private void BtnMenuListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMenuListActionPerformed
@@ -187,6 +233,22 @@ public class menu extends javax.swing.JFrame {
     private void BtnMenuRelatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMenuRelatActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BtnMenuRelatActionPerformed
+
+    private void btnMenuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuSairActionPerformed
+        // TODO add your handling code here:
+        try {
+            int r =JOptionPane.showConfirmDialog(null, "Deseja Realmente Sair?");
+            if(r==0){
+                this.dispose();
+                login l = new login();
+                l.setVisible(true);
+                l.ConStatus(true);
+                
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_btnMenuSairActionPerformed
 
     /**
      * @param args the command line arguments
@@ -231,9 +293,12 @@ public class menu extends javax.swing.JFrame {
     private javax.swing.JButton BtnMenuCadUser;
     private javax.swing.JButton BtnMenuList;
     private javax.swing.JButton BtnMenuRelat;
+    private javax.swing.JButton btnMenuSair;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel labelNameUser;
+    private javax.swing.JLabel labelUser;
     // End of variables declaration//GEN-END:variables
 }
