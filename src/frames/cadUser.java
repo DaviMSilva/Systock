@@ -40,7 +40,7 @@ public class cadUser extends javax.swing.JFrame {
         btnBusca = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaBusca = new javax.swing.JTable();
-        btnBusca1 = new javax.swing.JButton();
+        btnSelect = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         labelCadUserNome = new javax.swing.JLabel();
         textCadUserNome = new javax.swing.JTextField();
@@ -58,6 +58,7 @@ public class cadUser extends javax.swing.JFrame {
         btnUserLimparExcluir = new javax.swing.JButton();
 
         alterar.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        alterar.setResizable(false);
 
         painelBusca.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -91,10 +92,11 @@ public class cadUser extends javax.swing.JFrame {
         tabelaBusca.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(tabelaBusca);
 
-        btnBusca1.setText("Selecionar");
-        btnBusca1.addActionListener(new java.awt.event.ActionListener() {
+        btnSelect.setText("Selecionar");
+        btnSelect.setEnabled(false);
+        btnSelect.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBusca1ActionPerformed(evt);
+                btnSelectActionPerformed(evt);
             }
         });
 
@@ -111,17 +113,16 @@ public class cadUser extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelBuscaLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(painelBuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelBuscaLayout.createSequentialGroup()
-                                .addComponent(btnBusca1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(259, 259, 259))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelBuscaLayout.createSequentialGroup()
-                                .addGroup(painelBuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel9)
-                                    .addGroup(painelBuscaLayout.createSequentialGroup()
-                                        .addComponent(textCadProdBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnBusca)))
-                                .addGap(84, 84, 84))))))
+                            .addComponent(jLabel9)
+                            .addGroup(painelBuscaLayout.createSequentialGroup()
+                                .addComponent(textCadProdBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnBusca)))
+                        .addGap(84, 84, 84))))
+            .addGroup(painelBuscaLayout.createSequentialGroup()
+                .addGap(254, 254, 254)
+                .addComponent(btnSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         painelBuscaLayout.setVerticalGroup(
             painelBuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,9 +138,9 @@ public class cadUser extends javax.swing.JFrame {
                         .addComponent(textCadProdBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnBusca1, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnSelect)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout alterarLayout = new javax.swing.GroupLayout(alterar.getContentPane());
@@ -153,14 +154,15 @@ public class cadUser extends javax.swing.JFrame {
         );
         alterarLayout.setVerticalGroup(
             alterarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, alterarLayout.createSequentialGroup()
+            .addGroup(alterarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(painelBusca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(painelBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("cadastro de usuario");
+        setResizable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro de Usuário", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
@@ -439,6 +441,7 @@ public class cadUser extends javax.swing.JFrame {
                     // adiciona a tabela
                     model.addRow(new Object[]{u.getIdUser(), u.getUserName(), u.getUserLogin()});
                     tabelaBusca.setRowSelectionInterval(0, 0);
+                    this.btnSelect.setEnabled(true);
                 }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e);
@@ -451,7 +454,7 @@ public class cadUser extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tabelaBusca);
     }//GEN-LAST:event_btnBuscaActionPerformed
 
-    private void btnBusca1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusca1ActionPerformed
+    private void btnSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectActionPerformed
         // TODO add your handling code here:
         try {
             Usuario user = new Usuario();
@@ -476,7 +479,7 @@ public class cadUser extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e,"erro",0);
         }
 
-    }//GEN-LAST:event_btnBusca1ActionPerformed
+    }//GEN-LAST:event_btnSelectActionPerformed
 
     private void textCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCodActionPerformed
         // TODO add your handling code here:
@@ -520,7 +523,7 @@ public class cadUser extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFrame alterar;
     private javax.swing.JButton btnBusca;
-    private javax.swing.JButton btnBusca1;
+    private javax.swing.JButton btnSelect;
     private javax.swing.JButton btnUserAlterar;
     private javax.swing.JButton btnUserLimparExcluir;
     private javax.swing.JButton btnUserSalvar;

@@ -6,6 +6,7 @@
 package frames;
 
 import DAO.FornecedoresDAO;
+import MyReports.Report;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import object.Fornecedor;
@@ -41,7 +42,7 @@ public class cadfor extends javax.swing.JFrame {
         btnBusca = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaBusca = new javax.swing.JTable();
-        btnBusca1 = new javax.swing.JButton();
+        btnselect = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         textCadForneEmail = new javax.swing.JTextField();
@@ -61,6 +62,7 @@ public class cadfor extends javax.swing.JFrame {
         btnCadForneLimparExcluir = new javax.swing.JButton();
 
         alterar.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        alterar.setResizable(false);
 
         painelBusca.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -93,10 +95,11 @@ public class cadfor extends javax.swing.JFrame {
         tabelaBusca.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(tabelaBusca);
 
-        btnBusca1.setText("Selecionar");
-        btnBusca1.addActionListener(new java.awt.event.ActionListener() {
+        btnselect.setText("Selecionar");
+        btnselect.setEnabled(false);
+        btnselect.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBusca1ActionPerformed(evt);
+                btnselectActionPerformed(evt);
             }
         });
 
@@ -120,7 +123,7 @@ public class cadfor extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(painelBuscaLayout.createSequentialGroup()
                 .addGap(234, 234, 234)
-                .addComponent(btnBusca1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnselect, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         painelBuscaLayout.setVerticalGroup(
@@ -136,7 +139,7 @@ public class cadfor extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnBusca1)
+                .addComponent(btnselect)
                 .addContainerGap())
         );
 
@@ -158,6 +161,7 @@ public class cadfor extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro de Fornecedor", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
@@ -503,6 +507,8 @@ public class cadfor extends javax.swing.JFrame {
                     // adiciona a tabela
                     model.addRow(new Object[]{p.getIdForne(),p.getNomeForne(),p.getCnpj(),p.getSetor(),p.getEmail(),p.getFone()});
                     tabelaBusca.setRowSelectionInterval(0, 0);
+                    this.btnselect.setEnabled(true);
+                    
                 }
             } catch (Exception e) {
                 
@@ -514,7 +520,7 @@ public class cadfor extends javax.swing.JFrame {
         jScrollPane1.setViewportView(this.tabelaBusca);
     }//GEN-LAST:event_btnBuscaActionPerformed
 
-    private void btnBusca1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusca1ActionPerformed
+    private void btnselectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnselectActionPerformed
         // TODO add your handling code here:
         try {
             Fornecedor forne = new Fornecedor();
@@ -540,7 +546,7 @@ public class cadfor extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e,"erro",0);
         }
 
-    }//GEN-LAST:event_btnBusca1ActionPerformed
+    }//GEN-LAST:event_btnselectActionPerformed
 
     private void textCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCodActionPerformed
         // TODO add your handling code here:
@@ -586,10 +592,10 @@ public class cadfor extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField TextCnpjforne;
     private javax.swing.JFrame alterar;
     private javax.swing.JButton btnBusca;
-    private javax.swing.JButton btnBusca1;
     private javax.swing.JButton btnCadForneAlterar;
     private javax.swing.JButton btnCadForneLimparExcluir;
     private javax.swing.JButton btnCadForneSalvar;
+    private javax.swing.JButton btnselect;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

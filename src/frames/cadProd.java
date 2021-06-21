@@ -47,7 +47,7 @@ public class cadProd extends javax.swing.JFrame {
         btnBusca = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaBusca = new javax.swing.JTable();
-        btnBusca1 = new javax.swing.JButton();
+        btnSelect = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         textProdNome = new javax.swing.JTextField();
@@ -73,6 +73,7 @@ public class cadProd extends javax.swing.JFrame {
         btnProdLimparExcluir = new javax.swing.JButton();
 
         alterar.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        alterar.setResizable(false);
 
         painelBusca.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -105,10 +106,11 @@ public class cadProd extends javax.swing.JFrame {
         tabelaBusca.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(tabelaBusca);
 
-        btnBusca1.setText("Selecionar");
-        btnBusca1.addActionListener(new java.awt.event.ActionListener() {
+        btnSelect.setText("Selecionar");
+        btnSelect.setEnabled(false);
+        btnSelect.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBusca1ActionPerformed(evt);
+                btnSelectActionPerformed(evt);
             }
         });
 
@@ -119,7 +121,7 @@ public class cadProd extends javax.swing.JFrame {
             .addGroup(painelBuscaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(painelBuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addGroup(painelBuscaLayout.createSequentialGroup()
                         .addGap(50, 50, 50)
                         .addGroup(painelBuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,10 +132,10 @@ public class cadProd extends javax.swing.JFrame {
                                 .addComponent(btnBusca)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(painelBuscaLayout.createSequentialGroup()
-                .addGap(242, 242, 242)
-                .addComponent(btnBusca1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelBuscaLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(189, 189, 189))
         );
         painelBuscaLayout.setVerticalGroup(
             painelBuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,8 +148,8 @@ public class cadProd extends javax.swing.JFrame {
                     .addComponent(textCadProdBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnBusca1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnSelect)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -164,11 +166,12 @@ public class cadProd extends javax.swing.JFrame {
             alterarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(alterarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(painelBusca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(painelBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro de Produto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
@@ -472,7 +475,6 @@ public class cadProd extends javax.swing.JFrame {
     private void btnProdAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdAlterarActionPerformed
         // TODO add your handling code here:
         this.alterar.setSize(650, 340);
-        
         this.alterar.setLocationRelativeTo(this);
         this.alterar.setVisible(true);
         
@@ -628,6 +630,7 @@ public class cadProd extends javax.swing.JFrame {
                     // adiciona a tabela
                     model.addRow(new Object[]{p.getCod(),p.getNome(),p.getValidade(),p.getCodFor(),p.getQnt(),p.getValUni(),p.getValTotal()});
                     tabelaBusca.setRowSelectionInterval(0, 0);
+                    this.btnSelect.setEnabled(true);
                 }
             } catch (SQLException ex) {
                 
@@ -639,7 +642,7 @@ public class cadProd extends javax.swing.JFrame {
 jScrollPane1.setViewportView(tabelaBusca);
     }//GEN-LAST:event_btnBuscaActionPerformed
 
-    private void btnBusca1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusca1ActionPerformed
+    private void btnSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectActionPerformed
         // TODO add your handling code here:
         try {
             Produto prod = new Produto();
@@ -671,7 +674,7 @@ jScrollPane1.setViewportView(tabelaBusca);
             JOptionPane.showMessageDialog(null, e,"erro",0);
         }
         
-    }//GEN-LAST:event_btnBusca1ActionPerformed
+    }//GEN-LAST:event_btnSelectActionPerformed
 
     private void textCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCodActionPerformed
         // TODO add your handling code here:
@@ -715,10 +718,10 @@ jScrollPane1.setViewportView(tabelaBusca);
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFrame alterar;
     private javax.swing.JButton btnBusca;
-    private javax.swing.JButton btnBusca1;
     private javax.swing.JButton btnProdAlterar;
     private javax.swing.JButton btnProdLimparExcluir;
     private javax.swing.JButton btnProdSalvar;
+    private javax.swing.JButton btnSelect;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

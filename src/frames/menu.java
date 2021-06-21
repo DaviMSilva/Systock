@@ -5,6 +5,7 @@
  */
 package frames;
 
+import MyReports.Report;
 import javax.swing.JOptionPane;
 import object.Usuario;
 
@@ -52,9 +53,14 @@ public class menu extends javax.swing.JFrame {
         btnMenuSair = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Menu", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
@@ -173,10 +179,45 @@ public class menu extends javax.swing.JFrame {
                 .addGap(0, 11, Short.MAX_VALUE))
         );
 
-        jMenu1.setText("File");
+        jMenu1.setText("Arquivo");
+
+        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ESCAPE, 0));
+        jMenuItem4.setText("Sair");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem4);
+
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Edit");
+        jMenu2.setText("Relatórios");
+
+        jMenuItem1.setText("Listagem de Fornecedores");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem1);
+
+        jMenuItem2.setText("Listagem de Produtos");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem2);
+
+        jMenuItem3.setText("Listagem de Usuários");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem3);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -214,6 +255,7 @@ public class menu extends javax.swing.JFrame {
 
     private void BtnConsulMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnConsulMenuActionPerformed
         // TODO add your handling code here:
+       
     }//GEN-LAST:event_BtnConsulMenuActionPerformed
 
     private void BtnMenuAddRemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMenuAddRemActionPerformed
@@ -237,7 +279,7 @@ public class menu extends javax.swing.JFrame {
     private void btnMenuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuSairActionPerformed
         // TODO add your handling code here:
         try {
-            int r =JOptionPane.showConfirmDialog(null, "Deseja Realmente Sair?");
+            int r =JOptionPane.showConfirmDialog(null, "Deseja Realmente Sair?","",JOptionPane.YES_NO_OPTION);
             if(r==0){
                 this.dispose();
                 login l = new login();
@@ -249,6 +291,47 @@ public class menu extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_btnMenuSairActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        String sql = "SELECT * FROM fornecedores";
+        String caminho ="C:/Users/ACER/OneDrive/Documentos/NetBeansProjects/Systock/src/MyReports/ListagemForne.jasper";
+        Report r = new Report();
+        r.relatorio(sql,caminho);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        String sql = "SELECT * FROM produtos";
+        String caminho ="C:/Users/ACER/OneDrive/Documentos/NetBeansProjects/Systock/src/MyReports/ListagemProd.jasper";
+        Report r = new Report();
+        r.relatorio(sql,caminho);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+        try {
+            int r =JOptionPane.showConfirmDialog(null, "Deseja Realmente Sair?","",JOptionPane.YES_NO_OPTION);
+            if(r==0){
+                this.dispose();
+                login l = new login();
+                l.setVisible(true);
+                l.ConStatus(true);
+                
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+        
+        String sql = "SELECT * FROM usuarios";
+        String caminho ="C:/Users/ACER/OneDrive/Documentos/NetBeansProjects/Systock/src/MyReports/ListagemUser.jasper";
+        Report r = new Report();
+        r.relatorio(sql,caminho);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -297,6 +380,10 @@ public class menu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel labelNameUser;
     private javax.swing.JLabel labelUser;
